@@ -362,3 +362,78 @@ export function useDeleteARRWeeklyActual() {
   });
 }
 
+// ============================================================================
+// ARR SIMULATOR CONFIG
+// ============================================================================
+
+export interface SimulatorConfigData {
+  starting_subs: number;
+  starting_mrr: number;
+  weekly_visitors: number;
+  landing_conversion: number;
+  signup_to_paid: number;
+  arpu: number;
+  monthly_churn: number;
+  visitor_growth: number;
+  target_arr: number;
+}
+
+export function useARRSimulatorConfig() {
+  return useQuery({
+    queryKey: ['admin', 'analytics', 'arr-config'],
+    queryFn: async (): Promise<SimulatorConfigData> => {
+      const response = await backendApi.get('/admin/analytics/arr/config');
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+      return response.data;
+    },
+    staleTime: 60000, // 1 minute
+  });
+}
+
+export function useUpdateARRSimulatorConfig() {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (data: SimulatorConfigData): Promise<SimulatorConfigData> => {
+      const response = await backendApi.put('/admin/analytics/arr/config', data);
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin', 'analytics', 'arr-config'] });
+    },
+  });
+}
+
+// ============================================================================
+// ARR SIGNUPS BY DATE (fetched from database, grouped by frontend)
+// ============================================================================
+
+export interface SignupsByDateResponse {
+  date_from: string;
+  date_to: string;
+  signups_by_date: Record<string, number>;  // YYYY-MM-DD -> count
+  total: number;
+}
+
+export function useSignupsByDate(dateFrom: string, dateTo: string) {
+  return useQuery({
+    queryKey: ['admin', 'analytics', 'signups-by-date', dateFrom, dateTo],
+    queryFn: async (): Promise<SignupsByDateResponse> => {
+      const response = await backendApi.get(
+        `/admin/analytics/arr/signups?date_from=${dateFrom}&date_to=${dateTo}`
+      );
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+      return response.data;
+    },
+    staleTime: 60000, // 1 minute
+    enabled: !!dateFrom && !!dateTo,
+  });
+}
+
