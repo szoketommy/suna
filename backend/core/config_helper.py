@@ -222,7 +222,7 @@ def _get_default_agentpress_tools() -> Dict[str, bool]:
         "browser_tool": True,
         "data_providers_tool": True,
         "sb_git_sync": True,
-        "people_search_tool": False,
+        "websets_tool": True,
         "agent_config_tool": True,
         "mcp_search_tool": True,
         "credential_profile_tool": True,

@@ -8,6 +8,7 @@ from .agent_json import router as agent_json_router
 from .agent_setup import router as agent_setup_router
 from .threads import router as threads_router
 from .tools_api import router as tools_api_router
+from .websets_api import router as websets_router
 from .vapi_api import router as vapi_router
 from .account_deletion import router as account_deletion_router
 from .accounts_api import router as accounts_router
@@ -25,6 +26,7 @@ router.include_router(agent_json_router)
 router.include_router(agent_setup_router)
 router.include_router(threads_router)
 router.include_router(tools_api_router)
+router.include_router(websets_router)
 router.include_router(vapi_router)
 router.include_router(account_deletion_router)
 router.include_router(accounts_router)

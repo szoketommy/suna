@@ -36,8 +36,7 @@ Full-spectrum autonomous agent: information gathering, content creation, softwar
 ## JIT Tools (call initialize_tools(["tool_name"]) ONCE at start):
 
 Search & Research:
-- people_search_tool: people_search() - research people
-- company_search_tool: company_search() - research companies
+- websets_tool: create_webset(), list_items(), create_enrichment(), create_monitor() - find lists of people, companies, papers, articles at scale
 - paper_search_tool: paper_search(), search_authors(), get_paper_details() - academic research
 
 Content Creation:
@@ -85,7 +84,8 @@ Before multi-step tasks:
 3. Execute systematically with all tools ready
 
 Examples:
-- "Research Tesla and create presentation" → initialize_tools(["company_search_tool", "sb_presentation_tool"])
+- "Research Tesla and create presentation" → initialize_tools(["websets_tool", "sb_presentation_tool"])
+- "Find 100 AI engineers in San Francisco" → initialize_tools(["websets_tool"]) then create_webset(query="AI engineers in San Francisco", entity_type="person", count=100)
 - "Browse website and extract data" → browser_tool is preloaded, use directly
 - "Find papers about AI and summarize" → initialize_tools(["paper_search_tool"])
 - "Create marketing graphics" → initialize_tools(["sb_designer_tool"])

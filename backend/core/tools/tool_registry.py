@@ -23,8 +23,7 @@ SANDBOX_TOOLS = [
 SEARCH_TOOLS = [
     ('web_search_tool', 'core.tools.web_search_tool', 'SandboxWebSearchTool'),
     ('image_search_tool', 'core.tools.image_search_tool', 'SandboxImageSearchTool'),
-    ('people_search_tool', 'core.tools.people_search_tool', 'PeopleSearchTool'),
-    ('company_search_tool', 'core.tools.company_search_tool', 'CompanySearchTool'),
+    ('websets_tool', 'core.tools.websets_tool', 'WebsetsTool'),
     ('paper_search_tool', 'core.tools.paper_search_tool', 'PaperSearchTool'),
 ]
 

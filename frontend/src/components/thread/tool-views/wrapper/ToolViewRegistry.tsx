@@ -11,8 +11,7 @@ import { FileOperationToolView } from '../file-operation/FileOperationToolView';
 import { WebCrawlToolView } from '../WebCrawlToolView';
 import { WebScrapeToolView } from '../web-scrape-tool/WebScrapeToolView';
 import { WebSearchToolView } from '../web-search-tool/WebSearchToolView';
-import { PeopleSearchToolView } from '../people-search-tool/PeopleSearchToolView';
-import { CompanySearchToolView } from '../company-search-tool/CompanySearchToolView';
+import { WebsetsToolView } from '../websets-tool/WebsetsToolView';
 import { DocumentParserToolView } from '../document-parser-tool/DocumentParserToolView';
 import { SeeImageToolView } from '../see-image-tool/SeeImageToolView';
 import { WaitToolView } from '../wait-tool/WaitToolView';
@@ -86,8 +85,23 @@ const defaultRegistry: ToolViewRegistryType = {
   'str-replace': FileOperationToolView,
 
   'web-search': WebSearchToolView,
-  'people-search': PeopleSearchToolView,
-  'company-search': CompanySearchToolView,
+  'create-webset': WebsetsToolView,
+  'preview-webset': WebsetsToolView,
+  'list-websets': WebsetsToolView,
+  'get-webset': WebsetsToolView,
+  'delete-webset': WebsetsToolView,
+  'create-search': WebsetsToolView,
+  'list-searches': WebsetsToolView,
+  'cancel-search': WebsetsToolView,
+  'list-items': WebsetsToolView,
+  'get-item': WebsetsToolView,
+  'create-enrichment': WebsetsToolView,
+  'get-enrichment': WebsetsToolView,
+  'cancel-enrichment': WebsetsToolView,
+  'create-monitor': WebsetsToolView,
+  'list-monitors': WebsetsToolView,
+  'update-monitor': WebsetsToolView,
+  'delete-monitor': WebsetsToolView,
   'crawl-webpage': WebCrawlToolView,
   'scrape-webpage': WebScrapeToolView,
   'image-search': WebSearchToolView,
