@@ -31,7 +31,7 @@ import { useAgentSelection } from '@/stores/agent-selection-store';
 import { useThreadQuery } from '@/hooks/threads/use-threads';
 import { normalizeFilenameToNFC } from '@/lib/utils/unicode';
 import { toast } from 'sonner';
-import { useSunaModePersistence } from '@/stores/suna-modes-store';
+import { useagentiKModePersistence } from '@/stores/agentik-modes-store';
 import { Button } from '../ui/button';
 import { X, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -50,8 +50,8 @@ const PlanSelectionModal = lazy(() =>
 const UpgradeCelebration = lazy(() => 
   import('@/components/billing/upgrade-celebration').then(mod => ({ default: mod.UpgradeCelebration }))
 );
-const SunaModesPanel = lazy(() => 
-  import('./suna-modes-panel').then(mod => ({ default: mod.SunaModesPanel }))
+const agentiKModesPanel = lazy(() => 
+  import('./agentik-modes-panel').then(mod => ({ default: mod.agentiKModesPanel }))
 );
 const AgentRunLimitBanner = lazy(() => 
   import('@/components/thread/agent-run-limit-banner').then(mod => ({ default: mod.AgentRunLimitBanner }))
@@ -90,7 +90,7 @@ export function DashboardContent() {
     setSelectedCharts,
     setSelectedOutputFormat,
     setSelectedTemplate,
-  } = useSunaModePersistence();
+  } = useagentiKModePersistence();
   
   const [viewMode, setViewMode] = useState<'super-worker' | 'worker-templates'>('super-worker');
   
@@ -139,13 +139,13 @@ export function DashboardContent() {
   const selectedAgent = selectedAgentId
     ? agents.find(agent => agent.agent_id === selectedAgentId)
     : null;
-  const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default === true);
-  const displayName = selectedAgent?.name || 'Kortix';
+  const agentikAgent = agents.find(agent => agent.metadata?.is_agentik_default === true);
+  const displayName = selectedAgent?.name || 'agentiK';
   const agentAvatar = undefined;
-  // Show Kortix modes while loading (assume Kortix is default) or when Kortix agent is selected
-  const isSunaAgent = isLoadingAgents 
-    ? true // Show Kortix modes while loading
-    : (selectedAgent?.metadata?.is_suna_default || (!selectedAgentId && sunaAgent !== undefined) || false);
+  // Show agentiK modes while loading (assume agentiK is default) or when agentiK agent is selected
+  const isagentiKAgent = isLoadingAgents 
+    ? true // Show agentiK modes while loading
+    : (selectedAgent?.metadata?.is_agentik_default || (!selectedAgentId && agentikAgent !== undefined) || false);
 
   const threadQuery = useThreadQuery(initiatedThreadId || '');
   const { data: accountState, isLoading: isAccountStateLoading } = useAccountState({ enabled: !!user });
@@ -607,7 +607,7 @@ export function DashboardContent() {
                         : "text-muted-foreground hover:text-foreground"
                     )}
                   >
-                    Kortix
+                    agentiK
                   </button>
                   <button
                     onClick={() => {
@@ -707,11 +707,11 @@ export function DashboardContent() {
                   </div>
 
                   {/* Modes Panel - Below chat input, doesn't affect its position */}
-                  {isSunaAgent && (
+                  {isagentiKAgent && (
                     <div className="px-4 pb-6 sm:pb-8 animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-200 fill-mode-both">
                       <div className="max-w-3xl mx-auto">
                         <Suspense fallback={<div className="h-24 bg-muted/10 rounded-lg animate-pulse" />}>
-                          <SunaModesPanel
+                          <agentiKModesPanel
                             selectedMode={selectedMode}
                             onModeSelect={setSelectedMode}
                             onSelectPrompt={setInputValue}

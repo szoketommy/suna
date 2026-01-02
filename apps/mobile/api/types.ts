@@ -237,9 +237,9 @@ export interface Agent {
   current_version?: AgentVersion | null;
   metadata?: {
     template_name?: string;
-    kortix_template_id?: string;
-    is_kortix_team?: boolean;
-    is_suna_default?: boolean;
+    agentik_template_id?: string;
+    is_agentik_team?: boolean;
+    is_agentik_default?: boolean;
     centrally_managed?: boolean;
     management_version?: string;
     restrictions?: {

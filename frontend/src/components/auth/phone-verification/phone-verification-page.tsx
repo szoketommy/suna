@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { LogOut, Loader2, Shield } from 'lucide-react';
 import { useMutation } from '@tanstack/react-query';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 
 const AnimatedBg = lazy(() => import('@/components/ui/animated-bg').then(mod => ({ default: mod.AnimatedBg })));
 
@@ -248,7 +248,7 @@ export function PhoneVerificationPage({
 
       <div className="absolute top-6 left-6 z-10">
         <Link href="/" className="flex items-center space-x-2">
-          <KortixLogo size={28} />
+          <agentiKLogo size={28} />
         </Link>
       </div>
 

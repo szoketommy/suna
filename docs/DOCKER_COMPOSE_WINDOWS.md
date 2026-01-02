@@ -1,6 +1,6 @@
 # Docker Compose no Windows
 
-Algumas instalações do Docker Desktop para Windows não disponibilizam o subcomando `docker compose`, apenas o executável `docker-compose`. Os scripts do Suna detectam automaticamente qual comando está disponível e usam `docker-compose` como fallback quando necessário.
+Algumas instalações do Docker Desktop para Windows não disponibilizam o subcomando `docker compose`, apenas o executável `docker-compose`. Os scripts do agentiK detectam automaticamente qual comando está disponível e usam `docker-compose` como fallback quando necessário.
 
 ## Como o repositório detecta
 - Primeiro tenta `docker compose version`.

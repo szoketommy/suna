@@ -4,51 +4,51 @@ import os
 
 
 def extract_agent_config(agent_data: Dict[str, Any], version_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-    """Extract agent configuration with simplified logic for Suna vs custom agents."""
+    """Extract agent configuration with simplified logic for agentiK vs custom agents."""
     agent_id = agent_data.get('agent_id', 'Unknown')
     metadata = agent_data.get('metadata', {})
-    is_suna_default = metadata.get('is_suna_default', False)
+    is_agentik_default = metadata.get('is_agentik_default', False)
     
     # Debug logging
     if os.getenv("ENV_MODE", "").upper() == "STAGING":
-        print(f"[DEBUG] extract_agent_config: Called for agent {agent_id}, is_suna_default={is_suna_default}")
+        print(f"[DEBUG] extract_agent_config: Called for agent {agent_id}, is_agentik_default={is_agentik_default}")
         print(f"[DEBUG] extract_agent_config: Input agent_data has icon_name={agent_data.get('icon_name')}, icon_color={agent_data.get('icon_color')}, icon_background={agent_data.get('icon_background')}")
     
-    # Handle Suna agents with special logic
-    if is_suna_default:
-        return _extract_suna_agent_config(agent_data, version_data)
+    # Handle agentiK agents with special logic
+    if is_agentik_default:
+        return _extract_agentik_agent_config(agent_data, version_data)
     
     # Handle custom agents with versioning
     return _extract_custom_agent_config(agent_data, version_data)
 
 
-def _extract_suna_agent_config(agent_data: Dict[str, Any], version_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-    """Extract config for Suna agents - always use central config with user customizations.
+def _extract_agentik_agent_config(agent_data: Dict[str, Any], version_data: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """Extract config for agentiK agents - always use central config with user customizations.
     
-    Uses cached static config from runtime_cache instead of reading SUNA_CONFIG directly.
-    Always overrides name from SUNA_CONFIG regardless of what's in the database.
+    Uses cached static config from runtime_cache instead of reading AGENTIK_CONFIG directly.
+    Always overrides name from AGENTIK_CONFIG regardless of what's in the database.
     """
-    from core.runtime_cache import get_static_suna_config, load_static_suna_config
-    from core.suna_config import SUNA_CONFIG
+    from core.runtime_cache import get_static_agentik_config, load_static_agentik_config
+    from core.agentik_config import AGENTIK_CONFIG
     
     agent_id = agent_data.get('agent_id', 'Unknown')
-    logger.debug(f"Using Suna central config for agent {agent_id}")
+    logger.debug(f"Using agentiK central config for agent {agent_id}")
     
     # Get cached static config (or load it if not cached)
-    static_config = get_static_suna_config()
+    static_config = get_static_agentik_config()
     if not static_config:
-        static_config = load_static_suna_config()
+        static_config = load_static_agentik_config()
     
-    # Start with cached static config, but always override name from SUNA_CONFIG
+    # Start with cached static config, but always override name from AGENTIK_CONFIG
     config = {
         'agent_id': agent_data['agent_id'],
-        'name': SUNA_CONFIG['name'],  # Always override name from SUNA_CONFIG
-        'description': SUNA_CONFIG['description'],
+        'name': AGENTIK_CONFIG['name'],  # Always override name from AGENTIK_CONFIG
+        'description': AGENTIK_CONFIG['description'],
         'system_prompt': static_config['system_prompt'],  # From cached config
         'model': static_config['model'],  # From cached config
         'agentpress_tools': static_config['agentpress_tools'],  # From cached config
         'is_default': True,
-        'is_suna_default': True,
+        'is_agentik_default': True,
         'centrally_managed': static_config.get('centrally_managed', True),
         'account_id': agent_data.get('account_id'),
         'current_version_id': agent_data.get('current_version_id'),
@@ -131,7 +131,7 @@ def _extract_custom_agent_config(agent_data: Dict[str, Any], version_data: Optio
             'icon_color': agent_data.get('icon_color'),
             'icon_background': agent_data.get('icon_background'),
             'is_default': agent_data.get('is_default', False),
-            'is_suna_default': False,
+            'is_agentik_default': False,
             'centrally_managed': False,
             'account_id': agent_data.get('account_id'),
             'current_version_id': agent_data.get('current_version_id'),
@@ -161,7 +161,7 @@ def _extract_custom_agent_config(agent_data: Dict[str, Any], version_data: Optio
         'icon_color': agent_data.get('icon_color'),
         'icon_background': agent_data.get('icon_background'),
         'is_default': agent_data.get('is_default', False),
-        'is_suna_default': False,
+        'is_agentik_default': False,
         'centrally_managed': False,
         'account_id': agent_data.get('account_id'),
         'current_version_id': agent_data.get('current_version_id'),
@@ -181,7 +181,7 @@ def build_unified_config(
     agentpress_tools: Dict[str, Any],
     configured_mcps: List[Dict[str, Any]],
     custom_mcps: Optional[List[Dict[str, Any]]] = None,
-    suna_metadata: Optional[Dict[str, Any]] = None,
+    agentik_metadata: Optional[Dict[str, Any]] = None,
     triggers: Optional[List[Dict[str, Any]]] = None
 ) -> Dict[str, Any]:
     simplified_tools = {}
@@ -202,8 +202,8 @@ def build_unified_config(
         'metadata': {}
     }
     
-    if suna_metadata:
-        config['suna_metadata'] = suna_metadata
+    if agentik_metadata:
+        config['agentik_metadata'] = agentik_metadata
     
     return config
 

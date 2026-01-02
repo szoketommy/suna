@@ -78,10 +78,10 @@ class ModelConfig:
 
 @dataclass
 class Model:
-    # Registry ID - internal identifier (e.g., "kortix/basic")
+    # Registry ID - internal identifier (e.g., "agentik/basic")
     id: str
     
-    # Display name - shown to users (e.g., "Kortix Basic")
+    # Display name - shown to users (e.g., "agentiK Basic")
     name: str
     
     provider: ModelProvider

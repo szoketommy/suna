@@ -188,8 +188,8 @@ async def process_with_gemini(
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://kortix.ai",
-        "X-Title": "Kortix Canvas AI"
+        "HTTP-Referer": "https://agentik.ai",
+        "X-Title": "agentiK Canvas AI"
     }
     
     payload = {
@@ -212,7 +212,7 @@ async def process_with_gemini(
             }
         ],
         "modalities": ["image", "text"],
-        "app": "Kortix.com"
+        "app": "agentiK.com"
     }
     
     async with httpx.AsyncClient(timeout=120.0) as client:

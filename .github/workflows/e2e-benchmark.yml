@@ -39,7 +39,7 @@ jobs:
       
       - name: Run E2E Benchmark
         env:
-          API_URL: ${{ inputs.environment == 'production' && 'https://api.kortix.com' || 'https://staging-api.suna.so' }}
+          API_URL: ${{ inputs.environment == 'production' && 'https://api.agentik.com' || 'https://staging-api.agentik.so' }}
           ADMIN_API_KEY: ${{ secrets.KORTIX_ADMIN_API_KEY }}
         run: |
           set -e

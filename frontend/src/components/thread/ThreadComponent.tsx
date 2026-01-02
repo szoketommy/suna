@@ -56,7 +56,7 @@ import {
   useSetSelectedAgent, 
   useInitializeFromAgents, 
   useGetCurrentAgent, 
-  useIsSunaAgentFn 
+  useIsagentiKAgentFn 
 } from '@/stores/agent-selection-store';
 import { useQueryClient } from '@tanstack/react-query';
 import { threadKeys } from '@/hooks/threads/keys';
@@ -64,7 +64,7 @@ import { fileQueryKeys } from '@/hooks/files';
 import { useProjectRealtime } from '@/hooks/threads';
 import { handleGoogleSlidesUpload } from './tool-views/utils/presentation-utils';
 import { useTranslations } from 'next-intl';
-import { useKortixComputerStore, useSetIsSidePanelOpen } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore, useSetIsSidePanelOpen } from '@/stores/agentik-computer-store';
 import { useToolStreamStore } from '@/stores/tool-stream-store';
 import { useOptimisticFilesStore } from '@/stores/optimistic-files-store';
 import { useProcessStreamOperation } from '@/stores/spreadsheet-store';
@@ -96,7 +96,7 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
   const storeSetSelectedAgent = useSetSelectedAgent();
   const storeInitializeFromAgents = useInitializeFromAgents();
   const storeGetCurrentAgent = useGetCurrentAgent();
-  const storeIsSunaAgentFn = useIsSunaAgentFn();
+  const storeIsagentiKAgentFn = useIsagentiKAgentFn();
   
   const agentsQuery = useAgents({}, { enabled: isAuthenticated && !isShared });
 
@@ -104,7 +104,7 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
   const setSelectedAgent = isShared ? (() => { }) : storeSetSelectedAgent;
   const initializeFromAgents = isShared ? (() => { }) : storeInitializeFromAgents;
   const getCurrentAgent = isShared ? (() => undefined) : storeGetCurrentAgent;
-  const isSunaAgent = isShared ? false : storeIsSunaAgentFn;
+  const isagentiKAgent = isShared ? false : storeIsagentiKAgentFn;
 
   // Memoize agents array to prevent unnecessary recalculations
   const agents = useMemo(() => {
@@ -255,9 +255,9 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
   }, [setIsSidePanelOpen, setAutoOpenedPanel]);
 
   // Use individual selectors to avoid subscribing to entire store (prevents unnecessary re-renders)
-  const openFileInComputer = useKortixComputerStore((state) => state.openFileInComputer);
-  const openFileBrowser = useKortixComputerStore((state) => state.openFileBrowser);
-  const resetKortixComputerStore = useKortixComputerStore((state) => state.reset);
+  const openFileInComputer = useagentiKComputerStore((state) => state.openFileInComputer);
+  const openFileBrowser = useagentiKComputerStore((state) => state.openFileBrowser);
+  const resetagentiKComputerStore = useagentiKComputerStore((state) => state.reset);
 
   const billingModal = useBillingModal();
   const threadBilling = useThreadBilling(
@@ -354,9 +354,9 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
     if (!isShared) {
       queryClient.invalidateQueries({ queryKey: threadKeys.agentRuns(threadId) });
       queryClient.invalidateQueries({ queryKey: threadKeys.messages(threadId) });
-      resetKortixComputerStore();
+      resetagentiKComputerStore();
     }
-  }, [threadId, queryClient, isShared, resetKortixComputerStore]);
+  }, [threadId, queryClient, isShared, resetagentiKComputerStore]);
 
   useEffect(() => {
     if (!isNewThread || hasDataLoaded.current || !showOptimisticUI) return;
@@ -1075,7 +1075,7 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
   // SEO title update
   useEffect(() => {
     if (projectName) {
-      document.title = `${projectName} | Kortix`;
+      document.title = `${projectName} | agentiK`;
 
       const metaDescription = document.querySelector(
         'meta[name="description"]',
@@ -1083,13 +1083,13 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
       if (metaDescription) {
         metaDescription.setAttribute(
           'content',
-          `${projectName} - Interactive Worker conversation powered by Kortix`,
+          `${projectName} - Interactive Worker conversation powered by agentiK`,
         );
       }
 
       const ogTitle = document.querySelector('meta[property="og:title"]');
       if (ogTitle) {
-        ogTitle.setAttribute('content', `${projectName} | Kortix`);
+        ogTitle.setAttribute('content', `${projectName} | agentiK`);
       }
 
       const ogDescription = document.querySelector(
@@ -1114,7 +1114,7 @@ export function ThreadComponent({ projectId, threadId, compact = false, configur
     ) {
       hasCheckedUpgradeDialog.current = true;
       const hasSeenUpgradeDialog = localStorage.getItem(
-        'suna_upgrade_dialog_displayed',
+        'agentik_upgrade_dialog_displayed',
       );
       const isFreeTier = subscriptionStatus === 'no_subscription';
       if (!hasSeenUpgradeDialog && isFreeTier && !isLocalMode()) {

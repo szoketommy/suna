@@ -4,17 +4,17 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { X, Smartphone, Bell, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 
-const INTERSTITIAL_STORAGE_KEY = 'kortix-mobile-interstitial-dismissed';
+const INTERSTITIAL_STORAGE_KEY = 'agentik-mobile-interstitial-dismissed';
 const INTERSTITIAL_DISMISS_EXPIRY = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const STORE_LINKS = {
-  ios: 'https://apps.apple.com/ie/app/kortix/id6754448524',
-  android: 'https://play.google.com/store/apps/details?id=com.kortix.app',
+  ios: 'https://apps.apple.com/ie/app/agentik/id6754448524',
+  android: 'https://play.google.com/store/apps/details?id=com.agentik.app',
 };
 
-const DEEP_LINK = 'kortix://';
+const DEEP_LINK = 'agentik://';
 
 type MobilePlatform = 'ios' | 'android' | null;
 
@@ -163,12 +163,12 @@ export function MobileAppInterstitial() {
             <div className="relative mb-6">
               <div className="absolute inset-0 bg-foreground/20 rounded-3xl blur-2xl scale-150" />
               <div className="relative w-24 h-24 bg-foreground rounded-[28px] flex items-center justify-center shadow-2xl">
-                <KortixLogo size={48} className="invert dark:invert-0" />
+                <agentiKLogo size={48} className="invert dark:invert-0" />
               </div>
             </div>
             
             <h1 className="text-3xl font-bold text-foreground text-center tracking-tight">
-              Kortix
+              agentiK
             </h1>
             <p className="text-muted-foreground text-center text-sm mt-1">
               Your AI Worker, in your pocket
@@ -221,8 +221,8 @@ export function MobileAppInterstitial() {
               onClick={handleOpenInApp}
               className="w-full h-14 bg-foreground hover:bg-foreground/90 text-background rounded-2xl text-base font-semibold flex items-center justify-center gap-2 transition-all active:scale-[0.98] shadow-lg"
             >
-              <KortixLogo size={20} className="invert dark:invert-0" />
-              Open in Kortix App
+              <agentiKLogo size={20} className="invert dark:invert-0" />
+              Open in agentiK App
             </button>
 
             {/* Secondary CTA - Download with store badge styling */}

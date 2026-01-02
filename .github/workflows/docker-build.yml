@@ -74,7 +74,7 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ghcr.io/${{ github.repository }}/suna-backend:${{ steps.get_tag_name.outputs.branch }}
+          tags: ghcr.io/${{ github.repository }}/agentik-backend:${{ steps.get_tag_name.outputs.branch }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -86,7 +86,7 @@ jobs:
           username: ${{ secrets.AWS_STAGING_USERNAME }}
           key: ${{ secrets.AWS_STAGING_KEY }}
           script: |
-            cd /home/ubuntu/suna/backend
+            cd /home/ubuntu/agentik/backend
             git fetch origin main
             git reset --hard origin/main
             set -a && source .env && set +a
@@ -122,7 +122,7 @@ jobs:
       #     username: ${{ secrets.STAGING_USERNAME }}
       #     key: ${{ secrets.STAGING_KEY }}
       #     script: |
-      #       cd /home/suna/backend
+      #       cd /home/agentik/backend
       #       git fetch origin main
       #       git reset --hard origin/main
       #       docker compose down
@@ -141,13 +141,13 @@ jobs:
         run: |
           set -e
           REGION="${{ steps.get_tag_name.outputs.aws_region }}"
-          CLUSTER="suna-ecs"
+          CLUSTER="agentik-ecs"
           
           # Get all service ARNs
           SERVICES=$(aws ecs list-services --cluster $CLUSTER --region $REGION --query 'serviceArns' --output text)
           
           # Update API service
-          API_SERVICE_ARN=$(echo $SERVICES | tr ' ' '\n' | grep 'suna-api-svc' | head -1)
+          API_SERVICE_ARN=$(echo $SERVICES | tr ' ' '\n' | grep 'agentik-api-svc' | head -1)
           if [ -n "$API_SERVICE_ARN" ]; then
             API_SERVICE=$(echo $API_SERVICE_ARN | awk -F'/' '{print $NF}')
             echo "Updating API service: $API_SERVICE"
@@ -160,7 +160,7 @@ jobs:
           fi
           
           # Update Worker service
-          WORKER_SERVICE_ARN=$(echo $SERVICES | tr ' ' '\n' | grep 'suna-worker-svc' | head -1)
+          WORKER_SERVICE_ARN=$(echo $SERVICES | tr ' ' '\n' | grep 'agentik-worker-svc' | head -1)
           if [ -n "$WORKER_SERVICE_ARN" ]; then
             WORKER_SERVICE=$(echo $WORKER_SERVICE_ARN | awk -F'/' '{print $NF}')
             echo "Updating Worker service: $WORKER_SERVICE"
@@ -180,6 +180,6 @@ jobs:
       #     username: ${{ secrets.PROD_USERNAME }}
       #     key: ${{ secrets.PROD_KEY }}
       #     script: |
-      #       cd /mnt/gluster-shared/data/infra/suna
+      #       cd /mnt/gluster-shared/data/infra/agentik
       #       set -a; source .env; set +a
-      #       docker stack deploy -c docker-compose.yml suna
+      #       docker stack deploy -c docker-compose.yml agentik

@@ -81,7 +81,7 @@ export function useThreadKeyboardShortcuts({
         }
         return;
       }
-      // Intentionally do NOT close the Kortix Computer on Escape.
+      // Intentionally do NOT close the agentiK Computer on Escape.
       // Escape is commonly used inside editors / in-panel UIs and should not dismiss the panel.
     };
 

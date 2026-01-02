@@ -8,7 +8,7 @@ import { View, Image, ScrollView, Dimensions } from 'react-native';
 import { WebView } from 'react-native-webview';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import { AlertCircle, FileText } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
 import { SelectableMarkdownText } from '@/components/ui/selectable-markdown';
@@ -165,7 +165,7 @@ function ImagePreview({ blobUrl, fileName }: { blobUrl?: string; fileName: strin
   if (!blobUrl) {
     return (
       <View className="flex-1 items-center justify-center p-8">
-        <KortixLoader size="large" />
+        <agentiKLoader size="large" />
         <Text className="text-sm text-muted-foreground mt-4">
           Loading image...
         </Text>
@@ -196,7 +196,7 @@ function ImagePreview({ blobUrl, fileName }: { blobUrl?: string; fileName: strin
         <View className="items-center">
           {isLoading && (
             <View className="absolute inset-0 items-center justify-center z-10">
-              <KortixLoader size="large" />
+              <agentiKLoader size="large" />
             </View>
           )}
           <Image
@@ -399,7 +399,7 @@ function HtmlPreview({
           startInLoadingState={true}
           renderLoading={() => (
             <View className="flex-1 items-center justify-center">
-              <KortixLoader size="large" />
+              <agentiKLoader size="large" />
               <Text
                 className="text-sm mt-4 font-roobert"
                 style={{ color: isDark ? 'rgba(248, 248, 248, 0.5)' : 'rgba(18, 18, 21, 0.5)' }}

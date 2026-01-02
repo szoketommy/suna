@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 
-interface KortixLoaderProps {
+interface agentiKLoaderProps {
   /**
    * Size preset for the loader
    * @default 'medium'
@@ -58,7 +58,7 @@ const SIZE_MAP = {
 } as const;
 
 /**
- * KortixLoader - A unified loading animation component
+ * agentiKLoader - A unified loading animation component
  * 
  * Uses separate Lottie animations (white and black) that dynamically load
  * based on the current theme or can be explicitly set.
@@ -78,19 +78,19 @@ const SIZE_MAP = {
  * @example
  * ```tsx
  * // Auto-themed (default)
- * <KortixLoader />
+ * <agentiKLoader />
  * 
  * // Always white (for dark backgrounds in any theme)
- * <KortixLoader variant="white" />
+ * <agentiKLoader variant="white" />
  * 
  * // Always black (for light backgrounds in any theme)
- * <KortixLoader variant="black" />
+ * <agentiKLoader variant="black" />
  * 
  * // Custom size
- * <KortixLoader size="large" />
+ * <agentiKLoader size="large" />
  * ```
  */
-export function KortixLoader({
+export function agentiKLoader({
   size = 'medium',
   speed = 1.2,
   customSize,
@@ -100,7 +100,7 @@ export function KortixLoader({
   loop = true,
   variant = 'auto',
   forceTheme, // deprecated, but kept for backwards compatibility
-}: KortixLoaderProps) {
+}: agentiKLoaderProps) {
   const { resolvedTheme } = useTheme();
   const loaderSize = customSize || SIZE_MAP[size];
   

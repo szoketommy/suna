@@ -1,5 +1,5 @@
-export { KortixComputer, type ToolCallInput } from './KortixComputer';
+export { agentiKComputer, type ToolCallInput } from './agentiKComputer';
 export { FileBrowserView } from './FileBrowserView';
 export { FileViewerView } from './FileViewerView';
-export { KortixComputerHeader } from './KortixComputerHeader';
+export { agentiKComputerHeader } from './agentiKComputerHeader';
 

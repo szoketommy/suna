@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { View, ScrollView, Pressable, Alert, Modal, FlatList } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import {
   File,
   Folder,
@@ -21,7 +21,7 @@ import * as Haptics from 'expo-haptics';
 import * as DocumentPicker from 'expo-document-picker';
 import * as ImagePicker from 'expo-image-picker';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 import {
   useSandboxFiles,
   useUploadFileToSandbox,
@@ -33,7 +33,7 @@ import {
   type CommitInfo,
 } from '@/lib/files/hooks';
 import type { SandboxFile } from '@/api/types';
-import { KortixComputerHeader, type BreadcrumbSegment } from './KortixComputerHeader';
+import { agentiKComputerHeader, type BreadcrumbSegment } from './agentiKComputerHeader';
 import { VersionBanner } from './VersionBanner';
 
 interface FileBrowserViewProps {
@@ -91,7 +91,7 @@ export function FileBrowserView({
     selectedVersionDate,
     setSelectedVersion,
     clearSelectedVersion,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
 
   const [isUploading, setIsUploading] = useState(false);
   const [showVersionModal, setShowVersionModal] = useState(false);
@@ -360,7 +360,7 @@ export function FileBrowserView({
   return (
     <View className="flex-1">
       {/* Header */}
-      <KortixComputerHeader
+      <agentiKComputerHeader
         icon={Home}
         onIconClick={navigateHome}
         iconTitle="Home"
@@ -431,7 +431,7 @@ export function FileBrowserView({
       <View className="flex-1">
         {isLoading ? (
           <View className="flex-1 items-center justify-center gap-2">
-            <KortixLoader size="large" />
+            <agentiKLoader size="large" />
             <Text className="text-sm text-muted-foreground">
               {isLoadingVersionFiles ? 'Loading version...' : 'Loading files...'}
             </Text>
@@ -558,7 +558,7 @@ export function FileBrowserView({
 
           {isLoadingVersions ? (
             <View className="flex-1 items-center justify-center">
-              <KortixLoader size="large" />
+              <agentiKLoader size="large" />
               <Text className="text-sm text-muted-foreground mt-4">Loading history...</Text>
             </View>
           ) : versions.length === 0 ? (
@@ -602,7 +602,7 @@ export function FileBrowserView({
 
             {isLoadingRevertInfo ? (
               <View className="py-8 items-center">
-                <KortixLoader size="small" />
+                <agentiKLoader size="small" />
               </View>
             ) : revertCommitInfo ? (
               <View className="mb-4">

@@ -20,7 +20,7 @@ import {
   CheckCircle2,
   Database,
 } from 'lucide-react-native';
-import { KortixLogo } from '@/components/ui/KortixLogo';
+import { agentiKLogo } from '@/components/ui/agentiKLogo';
 import * as Haptics from 'expo-haptics';
 import Animated, {
   useAnimatedStyle,
@@ -328,7 +328,7 @@ export default function OnboardingScreen() {
       <View className="flex-1 bg-background">
         {/* Header */}
         <View className="pt-14 px-6 pb-2 flex-row justify-between items-center">
-          <KortixLogo variant="logomark" size={64} color={isDark ? 'dark' : 'light'} />
+          <agentiKLogo variant="logomark" size={64} color={isDark ? 'dark' : 'light'} />
           <TouchableOpacity
             onPress={handleLogout}
             disabled={isSigningOut}
@@ -826,9 +826,9 @@ function ExampleCard({ example, index, scrollX, isActive, isDark, t }: ExampleCa
           {/* AI Response */}
           <View className="flex-1">
             <View className="flex-row items-center gap-1.5 mb-2">
-              <KortixLogo variant="symbol" size={14} color={isDark ? 'dark' : 'light'} />
+              <agentiKLogo variant="symbol" size={14} color={isDark ? 'dark' : 'light'} />
               <Text className="text-[13px] font-roobert-medium text-foreground opacity-50">
-                Kortix
+                agentiK
               </Text>
             </View>
 
@@ -876,7 +876,7 @@ function ExampleCard({ example, index, scrollX, isActive, isDark, t }: ExampleCa
           </View>
         </View>
 
-        {/* Kortix Computer Drawer */}
+        {/* agentiK Computer Drawer */}
         <AnimatedView
           style={[
             drawerAnimatedStyle,
@@ -896,9 +896,9 @@ function ExampleCard({ example, index, scrollX, isActive, isDark, t }: ExampleCa
 
             <View className="px-4 py-2 flex-row items-center justify-between">
               <View className="flex-row items-center gap-2">
-                <KortixLogo variant="symbol" size={14} color={isDark ? 'dark' : 'light'} />
+                <agentiKLogo variant="symbol" size={14} color={isDark ? 'dark' : 'light'} />
                 <Text className="text-[14px] font-roobert-medium text-foreground">
-                  {t('onboarding.kortixComputer')}
+                  {t('onboarding.agentikComputer')}
                 </Text>
               </View>
 

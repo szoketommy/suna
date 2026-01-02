@@ -203,7 +203,7 @@ jobs:
       - name: Upload macOS artifacts (for GitHub Release)
         uses: actions/upload-artifact@v4
         with:
-          name: kortix-macos-${{ matrix.arch }}-${{ github.sha }}
+          name: agentik-macos-${{ matrix.arch }}-${{ github.sha }}
           path: |
             apps/desktop/dist/*.dmg
           retention-days: 30
@@ -290,7 +290,7 @@ jobs:
       - name: Upload Windows artifacts (for GitHub Release)
         uses: actions/upload-artifact@v4
         with:
-          name: kortix-windows-${{ github.sha }}
+          name: agentik-windows-${{ github.sha }}
           path: |
             apps/desktop/dist/*.exe
           retention-days: 30
@@ -316,19 +316,19 @@ jobs:
       - name: Download macOS x64 artifacts
         uses: actions/download-artifact@v4
         with:
-          name: kortix-macos-x64-${{ github.sha }}
+          name: agentik-macos-x64-${{ github.sha }}
           path: ./artifacts/macos-x64
 
       - name: Download macOS ARM64 artifacts
         uses: actions/download-artifact@v4
         with:
-          name: kortix-macos-arm64-${{ github.sha }}
+          name: agentik-macos-arm64-${{ github.sha }}
           path: ./artifacts/macos-arm64
 
       - name: Download Windows artifacts
         uses: actions/download-artifact@v4
         with:
-          name: kortix-windows-${{ github.sha }}
+          name: agentik-windows-${{ github.sha }}
           path: ./artifacts/windows
 
       - name: List all artifacts
@@ -352,7 +352,7 @@ jobs:
             ./artifacts/macos-arm64/*
             ./artifacts/windows/*
           body: |
-            ## Kortix Desktop App ${{ steps.version.outputs.version }}
+            ## agentiK Desktop App ${{ steps.version.outputs.version }}
             
             ### Downloads
             
@@ -368,13 +368,13 @@ jobs:
             **macOS:**
             1. Download the appropriate `.dmg` file for your Mac (Apple Silicon or Intel)
             2. Open the `.dmg` file
-            3. Drag Kortix to your Applications folder
-            4. Open Kortix from Applications
+            3. Drag agentiK to your Applications folder
+            4. Open agentiK from Applications
             
             **Windows:**
             1. Download and run the `.exe` installer
             2. Follow the installation wizard
-            3. Launch Kortix from the Start Menu
+            3. Launch agentiK from the Start Menu
             
             ---
             

@@ -23,7 +23,7 @@ export interface PricingTier {
   buttonText: string;
   hidden?: boolean;
   icon?: any; // React component type for icon
-  revenueCatId?: string; // RevenueCat product identifier (e.g., 'kortix_plus_monthly')
+  revenueCatId?: string; // RevenueCat product identifier (e.g., 'agentik_plus_monthly')
 }
 
 /**
@@ -53,7 +53,7 @@ export const PRICING_TIERS: PricingTier[] = [
       '100 daily credits - Refreshes every 24 hours (applies to all tiers)',
       '1 concurrent run',
       '10 Total Chats',
-      'Basic Mode - Core Kortix experience with basic autonomy',
+      'Basic Mode - Core agentiK experience with basic autonomy',
     ],
     disabledFeatures: [
       // 'No custom AI Workers',
@@ -79,17 +79,17 @@ export const PRICING_TIERS: PricingTier[] = [
       'CREDITS_BONUS:2000:4000',
       'Unlimited Chats',
       '3 concurrent runs - Run multiple Chats simultaneously',
-      // '5 custom AI Workers - Create Kortix Agents with custom Knowledge, Tools & Integrations',
+      // '5 custom AI Workers - Create agentiK Agents with custom Knowledge, Tools & Integrations',
       // '5 scheduled triggers - Run at 9am daily, every Monday, first of month...',
       // '25 app triggers - Auto-respond to new emails, Slack messages, form submissions...',
       // '100+ Integrations - Google Drive, Slack, Notion, Gmail, Calendar, GitHub & more',
-      'Kortix Advanced mode - Strongest autonomy & decision-making capabilities',
+      'agentiK Advanced mode - Strongest autonomy & decision-making capabilities',
     ],
     isPopular: true,
     buttonText: 'Get started',
     hidden: false,
     icon: Zap,
-    revenueCatId: 'kortix_plus',
+    revenueCatId: 'agentik_plus',
   },
   {
     id: 'tier_6_50',
@@ -104,17 +104,17 @@ export const PRICING_TIERS: PricingTier[] = [
       'CREDITS_BONUS:5000:10000',
       'Unlimited Chats',
       '5 concurrent runs - Run multiple Chats simultaneously',
-      // '20 custom AI Workers - Create Kortix Agents with custom Knowledge, Tools & Integrations',
+      // '20 custom AI Workers - Create agentiK Agents with custom Knowledge, Tools & Integrations',
       // '10 scheduled triggers - Run at 9am daily, every Monday, first of month...',
       // '50 app triggers - Auto-respond to new emails, Slack messages, form submissions...',
       // '100+ Integrations - Google Drive, Slack, Notion, Gmail, Calendar, GitHub & more',
-      'Kortix Advanced mode - Strongest autonomy & decision-making capabilities',
+      'agentiK Advanced mode - Strongest autonomy & decision-making capabilities',
     ],
     isPopular: false,
     buttonText: 'Get started',
     hidden: false,
     icon: Rocket,
-    revenueCatId: 'kortix_pro',
+    revenueCatId: 'agentik_pro',
   },
   {
     id: 'tier_25_200',
@@ -129,17 +129,17 @@ export const PRICING_TIERS: PricingTier[] = [
       'CREDITS_BONUS:20000:40000',
       'Unlimited Chats',
       '20 concurrent runs - Run multiple Chats simultaneously',
-      // '100 custom AI Workers - Create Kortix Agents with custom Knowledge, Tools & Integrations',
+      // '100 custom AI Workers - Create agentiK Agents with custom Knowledge, Tools & Integrations',
       // '50 scheduled triggers - Run at 9am daily, every Monday, first of month...',
       // '200 app triggers - Auto-respond to new emails, Slack messages, form submissions...',
       // '100+ Integrations - Google Drive, Slack, Notion, Gmail, Calendar, GitHub & more',
-      'Kortix Advanced mode - Strongest autonomy & decision-making capabilities',
+      'agentiK Advanced mode - Strongest autonomy & decision-making capabilities',
     ],
     isPopular: false,
     buttonText: 'Get started',
     hidden: false,
     icon: Crown,
-    revenueCatId: 'kortix_ultra',
+    revenueCatId: 'agentik_ultra',
   },
 ];
 

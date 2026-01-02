@@ -116,9 +116,9 @@ export function ToolsScreen({ agentId, onUpdate }: ToolsScreenProps) {
     }
   }, [agent?.agentpress_tools]);
 
-  const isSunaAgent = agent?.metadata?.is_suna_default || false;
+  const isagentiKAgent = agent?.metadata?.is_agentik_default || false;
   const restrictions = agent?.metadata?.restrictions || {};
-  const areToolsEditable = restrictions.tools_editable !== false && !isSunaAgent;
+  const areToolsEditable = restrictions.tools_editable !== false && !isagentiKAgent;
 
   const handleToolToggle = (toolName: string, enabled: boolean) => {
     if (!areToolsEditable) return;
@@ -243,13 +243,13 @@ export function ToolsScreen({ agentId, onUpdate }: ToolsScreenProps) {
   const handleSave = async () => {
     if (!hasChanges) return;
 
-    const isSunaAgent = agent?.metadata?.is_suna_default || false;
+    const isagentiKAgent = agent?.metadata?.is_agentik_default || false;
     const restrictions = agent?.metadata?.restrictions || {};
-    const areToolsEditable = restrictions.tools_editable !== false && !isSunaAgent;
+    const areToolsEditable = restrictions.tools_editable !== false && !isagentiKAgent;
 
     if (!areToolsEditable) {
-      if (isSunaAgent) {
-        Alert.alert(t('workers.cannotEditTools'), t('workers.sunaToolsManagedAlert'));
+      if (isagentiKAgent) {
+        Alert.alert(t('workers.cannotEditTools'), t('workers.agentikToolsManagedAlert'));
       }
       return;
     }
@@ -537,7 +537,7 @@ export function ToolsScreen({ agentId, onUpdate }: ToolsScreenProps) {
                   className="mt-0.5 text-yellow-600 dark:text-yellow-400"
                 />
                 <Text className="flex-1 font-roobert text-sm text-yellow-600 dark:text-yellow-400">
-                  {isSunaAgent ? t('workers.sunaToolsManaged') : t('workers.toolsNotEditable')}
+                  {isagentiKAgent ? t('workers.agentikToolsManaged') : t('workers.toolsNotEditable')}
                 </Text>
               </View>
             )}

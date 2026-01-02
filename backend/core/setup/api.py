@@ -11,7 +11,7 @@ from core.utils.auth_utils import verify_and_get_user_id_from_jwt
 from core.utils.logger import logger
 from core.utils.config import config
 from core.billing.subscriptions import free_tier_service
-from core.utils.suna_default_agent_service import SunaDefaultAgentService
+from core.utils.agentik_default_agent_service import agentiKDefaultAgentService
 from core.services.supabase import DBConnection
 from core.services.email import email_service
 
@@ -96,13 +96,13 @@ async def initialize_user_account(account_id: str, email: Optional[str] = None, 
                     'error': error_msg
                 }
         
-        logger.info(f"[SETUP] Installing Suna agent for {account_id}")
-        suna_service = SunaDefaultAgentService(db)
-        agent_id = await suna_service.install_suna_agent_for_user(account_id)
+        logger.info(f"[SETUP] Installing agentiK agent for {account_id}")
+        agentik_service = agentiKDefaultAgentService(db)
+        agent_id = await agentik_service.install_agentik_agent_for_user(account_id)
         
 
         if not agent_id:
-            logger.warning(f"[SETUP] Failed to install Suna agent for {account_id}, but continuing")
+            logger.warning(f"[SETUP] Failed to install agentiK agent for {account_id}, but continuing")
         
         if user_record:
             raw_user_metadata = user_record.get('raw_user_meta_data', {})
@@ -235,7 +235,7 @@ async def handle_user_created_webhook(
     request to this endpoint using pg_net.
     
     This webhook automatically:
-    1. Initializes account (free tier subscription + Suna agent)
+    1. Initializes account (free tier subscription + agentiK agent)
     2. Sends welcome email
     
     All initialization happens automatically on the backend, eliminating

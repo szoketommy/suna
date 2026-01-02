@@ -19,7 +19,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { X, Image as ImageIcon, Presentation, BarChart3, FileText, Search, Palette, Video, Code2, Sparkles, Brain as BrainIcon, MessageSquare, CornerDownLeft, Plug, Lock } from 'lucide-react';
-import { KortixLoader } from '@/components/ui/kortix-loader';
+import { agentiKLoader } from '@/components/ui/agentik-loader';
 import { VoiceRecorder } from './voice-recorder';
 import { useTheme } from 'next-themes';
 import { UnifiedConfigMenu } from './unified-config-menu';
@@ -464,21 +464,21 @@ const ModeButton = memo(function ModeButton({
   );
 });
 
-// Kortix agent modes switcher - isolated from typing state
-interface SunaAgentModeSwitcherProps {
+// agentiK agent modes switcher - isolated from typing state
+interface agentiKAgentModeSwitcherProps {
   enabled: boolean;
-  isSunaAgent: boolean;
-  sunaAgentModes: 'adaptive' | 'autonomous' | 'chat';
+  isagentiKAgent: boolean;
+  agentikAgentModes: 'adaptive' | 'autonomous' | 'chat';
   onModeChange: (mode: 'adaptive' | 'autonomous' | 'chat') => void;
 }
 
-const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
+const agentiKAgentModeSwitcher = memo(function agentiKAgentModeSwitcher({
   enabled,
-  isSunaAgent,
-  sunaAgentModes,
+  isagentiKAgent,
+  agentikAgentModes,
   onModeChange,
-}: SunaAgentModeSwitcherProps) {
-  if (!enabled || !(isStagingMode() || isLocalMode()) || !isSunaAgent) return null;
+}: agentiKAgentModeSwitcherProps) {
+  if (!enabled || !(isStagingMode() || isLocalMode()) || !isagentiKAgent) return null;
 
   return (
     <div className="flex items-center gap-1 p-0.5 bg-muted/50 rounded-lg">
@@ -488,7 +488,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
             onClick={() => onModeChange('adaptive')}
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
-              sunaAgentModes === 'adaptive'
+              agentikAgentModes === 'adaptive'
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground hover:bg-background/50"
             )}
@@ -510,7 +510,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
             onClick={() => onModeChange('autonomous')}
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
-              sunaAgentModes === 'autonomous'
+              agentikAgentModes === 'autonomous'
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground hover:bg-background/50"
             )}
@@ -532,7 +532,7 @@ const SunaAgentModeSwitcher = memo(function SunaAgentModeSwitcher({
             onClick={() => onModeChange('chat')}
             className={cn(
               "p-1.5 rounded-md transition-all duration-200 cursor-pointer",
-              sunaAgentModes === 'chat'
+              agentikAgentModes === 'chat'
                 ? "bg-background text-foreground shadow-sm"
                 : "text-muted-foreground hover:text-foreground hover:bg-background/50"
             )}
@@ -605,7 +605,7 @@ const SubmitButton = memo(function SubmitButton({
             disabled={isDisabled}
           >
             {((loading || isUploading) && !isAgentRunning) ? (
-              <KortixLoader size="small" customSize={20} variant={buttonLoaderVariant} />
+              <agentiKLoader size="small" customSize={20} variant={buttonLoaderVariant} />
             ) : showAddToQueue ? (
               <MessageSquare className="h-4 w-4" />
             ) : isAgentRunning ? (
@@ -785,9 +785,9 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
     const [agentConfigDialog, setAgentConfigDialog] = useState<{ open: boolean; tab: 'instructions' | 'knowledge' | 'triggers' | 'tools' | 'integrations' }>({ open: false, tab: 'instructions' });
     const [mounted, setMounted] = useState(false);
     const [animatedPlaceholder, setAnimatedPlaceholder] = useState('');
-    const [isModeDismissing, setIsModeDismissing] = useState(false);    // Kortix Agent Modes feature flag
-    const ENABLE_SUNA_AGENT_MODES = false;
-    const [sunaAgentModes, setSunaAgentModes] = useState<'adaptive' | 'autonomous' | 'chat'>('adaptive');
+    const [isModeDismissing, setIsModeDismissing] = useState(false);    // agentiK Agent Modes feature flag
+    const ENABLE_AGENTIK_AGENT_MODES = false;
+    const [agentikAgentModes, setagentiKAgentModes] = useState<'adaptive' | 'autonomous' | 'chat'>('adaptive');
 
     const {
       selectedModel,
@@ -916,13 +916,13 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
     const { data: agentsResponse, isLoading: isLoadingAgents } = useAgents({}, { enabled: isLoggedIn });
     const agents = agentsResponse?.agents || [];
 
-    // Check if selected agent is Kortix based on agent data
-    // While loading, default to Kortix (assume Kortix is the default agent)
+    // Check if selected agent is agentiK based on agent data
+    // While loading, default to agentiK (assume agentiK is the default agent)
     const selectedAgent = agents.find(agent => agent.agent_id === selectedAgentId);
-    const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default === true);
-    const isSunaAgent = isLoadingAgents 
-        ? true // Show Kortix modes while loading
-        : (selectedAgent?.metadata?.is_suna_default || (!selectedAgentId && sunaAgent !== undefined) || false);
+    const agentikAgent = agents.find(agent => agent.metadata?.is_agentik_default === true);
+    const isagentiKAgent = isLoadingAgents 
+        ? true // Show agentiK modes while loading
+        : (selectedAgent?.metadata?.is_agentik_default || (!selectedAgentId && agentikAgent !== undefined) || false);
 
     const { initializeFromAgents } = useAgentSelection();
     useImperativeHandle(ref, () => ({
@@ -1319,11 +1319,11 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
         )} */}
 
         <div className="hidden sm:block">
-          <SunaAgentModeSwitcher
-            enabled={ENABLE_SUNA_AGENT_MODES}
-            isSunaAgent={isSunaAgent}
-            sunaAgentModes={sunaAgentModes}
-            onModeChange={setSunaAgentModes}
+          <agentiKAgentModeSwitcher
+            enabled={ENABLE_AGENTIK_AGENT_MODES}
+            isagentiKAgent={isagentiKAgent}
+            agentikAgentModes={agentikAgentModes}
+            onModeChange={setagentiKAgentModes}
           />
         </div>
 
@@ -1337,7 +1337,7 @@ export const ChatInput = memo(forwardRef<ChatInputHandles, ChatInputProps>(
           </div>
         )}
       </div>
-    ), [hideAttachments, loading, disabled, isAgentRunning, isUploading, sandboxId, projectId, messages, isLoggedIn, isFreeTier, quickIntegrations, integrationIcons, handleOpenRegistry, handleOpenPlanModal, threadId, memoryEnabled, onMemoryToggle, isSunaAgent, sunaAgentModes, onModeDeselect, selectedMode, isModeDismissing, handleModeDeselect]);
+    ), [hideAttachments, loading, disabled, isAgentRunning, isUploading, sandboxId, projectId, messages, isLoggedIn, isFreeTier, quickIntegrations, integrationIcons, handleOpenRegistry, handleOpenPlanModal, threadId, memoryEnabled, onMemoryToggle, isagentiKAgent, agentikAgentModes, onModeDeselect, selectedMode, isModeDismissing, handleModeDeselect]);
 
     const rightControls = useMemo(() => (
       <div className='flex items-center gap-2 flex-shrink-0'>

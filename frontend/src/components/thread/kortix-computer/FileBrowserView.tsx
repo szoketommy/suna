@@ -47,10 +47,10 @@ import { useDownloadRestriction } from '@/hooks/billing';
 import JSZip from 'jszip';
 import { normalizeFilenameToNFC } from '@/lib/utils/unicode';
 import { cn } from '@/lib/utils';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 import { Badge } from '@/components/ui/badge';
 import { VersionBanner } from './VersionBanner';
-import { KortixComputerHeader } from './KortixComputerHeader';
+import { agentiKComputerHeader } from './agentiKComputerHeader';
 
 const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
 
@@ -67,7 +67,7 @@ export function FileBrowserView({
 }: FileBrowserViewProps) {
   const { session } = useAuth();
   
-  // Kortix Computer Store
+  // agentiK Computer Store
   const { 
     currentPath, 
     navigateToPath,
@@ -76,7 +76,7 @@ export function FileBrowserView({
     selectedVersionDate,
     setSelectedVersion,
     clearSelectedVersion,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
   
   // Download restriction for free tier users
   const { isRestricted: isDownloadRestricted, openUpgradeModal } = useDownloadRestriction({
@@ -651,7 +651,7 @@ export function FileBrowserView({
   return (
     <div className="h-full flex flex-col overflow-hidden">
       {/* Header with Breadcrumb Navigation */}
-      <KortixComputerHeader
+      <agentiKComputerHeader
         icon={Home}
         onIconClick={navigateHome}
         iconTitle="Home"

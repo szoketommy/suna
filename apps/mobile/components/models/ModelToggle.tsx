@@ -1,7 +1,7 @@
 /**
  * Model Toggle Component
  *
- * A toggle switcher between Kortix Basic and Advanced modes
+ * A toggle switcher between agentiK Basic and Advanced modes
  * Matches the frontend's unified-config-menu ModeToggle design
  */
 
@@ -12,8 +12,8 @@ import { Lock } from 'lucide-react-native';
 import { useColorScheme } from 'nativewind';
 import * as Haptics from 'expo-haptics';
 // Import both black and white symbol variants
-import KortixSymbolBlack from '@/assets/brand/kortix-symbol.svg';
-import KortixSymbolWhite from '@/assets/brand/Symbol.svg';
+import agentiKSymbolBlack from '@/assets/brand/agentik-symbol.svg';
+import agentiKSymbolWhite from '@/assets/brand/Symbol.svg';
 import type { Model } from '@/api/types';
 
 // Color constants for light and dark modes
@@ -60,16 +60,16 @@ export function ModelToggle({
   // Find Basic and Advanced models
   const basicModel = useMemo(() => {
     return models.find(m =>
-      m.id === 'kortix/basic' ||
-      m.id === 'kortix-basic' ||
+      m.id === 'agentik/basic' ||
+      m.id === 'agentik-basic' ||
       m.id.includes('claude-haiku-4-5')
     );
   }, [models]);
 
   const powerModel = useMemo(() => {
     return models.find(m =>
-      m.id === 'kortix/power' ||
-      m.id === 'kortix-power' ||
+      m.id === 'agentik/power' ||
+      m.id === 'agentik-power' ||
       m.id.includes('claude-sonnet-4-5')
     );
   }, [models]);
@@ -167,12 +167,12 @@ export function ModelToggle({
       >
         {/* Use white symbol in dark mode, black in light mode */}
         {isDark ? (
-          <KortixSymbolWhite
+          <agentiKSymbolWhite
             width={compact ? 10 : 14}
             height={compact ? 10 : 14}
           />
         ) : (
-          <KortixSymbolBlack
+          <agentiKSymbolBlack
             width={compact ? 10 : 14}
             height={compact ? 10 : 14}
           />

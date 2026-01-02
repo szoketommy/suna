@@ -128,7 +128,7 @@ class TriggerTool(AgentBuilderBaseTool):
                     },
                     "model": {
                         "type": "string",
-                        "description": "Model to use for the scheduled execution. Options: 'kortix/basic' (default, free tier) or 'kortix/power' (requires paid subscription). If not specified, defaults to 'kortix/basic'."
+                        "description": "Model to use for the scheduled execution. Options: 'agentik/basic' (default, free tier) or 'agentik/power' (requires paid subscription). If not specified, defaults to 'agentik/basic'."
                     }
                 },
                 "required": ["name", "cron_expression", "agent_prompt"]
@@ -154,7 +154,7 @@ class TriggerTool(AgentBuilderBaseTool):
                 "cron_expression": cron_expression,
                 "provider_id": "schedule",
                 "agent_prompt": agent_prompt,
-                "model": model or "kortix/basic"
+                "model": model or "agentik/basic"
             }
             
             if variables:
@@ -244,7 +244,7 @@ class TriggerTool(AgentBuilderBaseTool):
                     "description": trigger.description,
                     "cron_expression": trigger.config.get("cron_expression"),
                     "agent_prompt": trigger.config.get("agent_prompt"),
-                    "model": trigger.config.get("model", "kortix/basic"),
+                    "model": trigger.config.get("model", "agentik/basic"),
                     "is_active": trigger.is_active
                 }
                 
@@ -445,7 +445,7 @@ class TriggerTool(AgentBuilderBaseTool):
                     "name": {"type": "string", "description": "Optional friendly name for the trigger"},
                     "agent_prompt": {"type": "string", "description": "Prompt to pass to the agent when triggered. Can include variables like {{variable_name}} that will be replaced when users install the template. For example: 'New email received for {{company_name}}...'"},
                     "connected_account_id": {"type": "string", "description": "Connected account id; if omitted we try to derive from profile"},
-                    "model": {"type": "string", "description": "Model to use for the event execution. Options: 'kortix/basic' (default, free tier) or 'kortix/power' (requires paid subscription). If not specified, defaults to 'kortix/basic'."}
+                    "model": {"type": "string", "description": "Model to use for the event execution. Options: 'agentik/basic' (default, free tier) or 'agentik/power' (requires paid subscription). If not specified, defaults to 'agentik/basic'."}
                 },
                 "required": ["slug", "profile_id", "agent_prompt"]
             }
@@ -586,34 +586,34 @@ class TriggerTool(AgentBuilderBaseTool):
             if not composio_trigger_id:
                 return self.fail_response("Failed to get Composio trigger id from response")
             
-            # Build Suna trigger config (same as API)
-            suna_config: Dict[str, Any] = {
+            # Build agentiK trigger config (same as API)
+            agentik_config: Dict[str, Any] = {
                 "provider_id": "composio",
                 "composio_trigger_id": composio_trigger_id,
                 "trigger_slug": slug,
                 "qualified_name": qualified_name,
                 "profile_id": profile_id,
                 "agent_prompt": agent_prompt,
-                "model": model or "kortix/basic"
+                "model": model or "agentik/basic"
             }
             
             if variables:
-                suna_config["trigger_variables"] = variables
+                agentik_config["trigger_variables"] = variables
                 logger.debug(f"Found variables in event trigger prompt: {variables}")
             
-            # Create Suna trigger
+            # Create agentiK trigger
             trigger_svc = get_trigger_service(self.db)
             try:
                 trigger = await trigger_svc.create_trigger(
                     agent_id=self.agent_id,
                     provider_id="composio",
                     name=name or slug,
-                    config=suna_config,
+                    config=agentik_config,
                     description=f"{slug}"
                 )
             except Exception as e:
-                logger.error(f"Failed to create Suna trigger: {e}")
-                return self.fail_response(f"Failed to create Suna trigger: {str(e)}")
+                logger.error(f"Failed to create agentiK trigger: {e}")
+                return self.fail_response(f"Failed to create agentiK trigger: {str(e)}")
 
             # Sync triggers to version config
             try:
@@ -622,7 +622,7 @@ class TriggerTool(AgentBuilderBaseTool):
                 logger.warning(f"Failed to sync triggers to version config: {e}")
 
             message = f"Event trigger '{trigger.name}' created successfully.\n"
-            message += f"**Model**: {suna_config['model']}\n"
+            message += f"**Model**: {agentik_config['model']}\n"
             message += "Worker execution configured."
             if variables:
                 message += f"\n**Template Variables Detected**: {', '.join(['{{' + v + '}}' for v in variables])}\n"
@@ -633,7 +633,7 @@ class TriggerTool(AgentBuilderBaseTool):
                 "trigger": {
                     "provider": "composio",
                     "slug": slug,
-                    "model": suna_config['model'],
+                    "model": agentik_config['model'],
                     "is_active": trigger.is_active,
                     "variables": variables if variables else []
                 }

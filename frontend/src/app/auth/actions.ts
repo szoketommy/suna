@@ -19,16 +19,16 @@ export async function signIn(prevState: any, formData: FormData) {
   const supabase = await createClient();
 
   // Use magic link (passwordless) authentication
-  // For desktop app, use custom protocol (kortix://auth/callback) - same as mobile
-  // For web, use standard origin (https://kortix.com/auth/callback)
+  // For desktop app, use custom protocol (agentik://auth/callback) - same as mobile
+  // For web, use standard origin (https://agentik.com/auth/callback)
   let emailRedirectTo: string;
-  if (isDesktopApp && origin.startsWith('kortix://')) {
+  if (isDesktopApp && origin.startsWith('agentik://')) {
     // Match mobile implementation - simple protocol URL with optional terms_accepted
     const params = new URLSearchParams();
     if (acceptedTerms) {
       params.set('terms_accepted', 'true');
     }
-    emailRedirectTo = `kortix://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
+    emailRedirectTo = `agentik://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
   } else {
     emailRedirectTo = `${origin}/auth/callback?returnUrl=${encodeURIComponent(returnUrl || '/dashboard')}${acceptedTerms ? '&terms_accepted=true' : ''}`;
   }
@@ -72,16 +72,16 @@ export async function signUp(prevState: any, formData: FormData) {
   const supabase = await createClient();
 
   // Use magic link (passwordless) authentication - auto-creates account
-  // For desktop app, use custom protocol (kortix://auth/callback) - same as mobile
-  // For web, use standard origin (https://kortix.com/auth/callback)
+  // For desktop app, use custom protocol (agentik://auth/callback) - same as mobile
+  // For web, use standard origin (https://agentik.com/auth/callback)
   let emailRedirectTo: string;
-  if (isDesktopApp && origin.startsWith('kortix://')) {
+  if (isDesktopApp && origin.startsWith('agentik://')) {
     // Match mobile implementation - simple protocol URL with optional terms_accepted
     const params = new URLSearchParams();
     if (acceptedTerms) {
       params.set('terms_accepted', 'true');
     }
-    emailRedirectTo = `kortix://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
+    emailRedirectTo = `agentik://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
   } else {
     emailRedirectTo = `${origin}/auth/callback?returnUrl=${encodeURIComponent(returnUrl || '/dashboard')}${acceptedTerms ? '&terms_accepted=true' : ''}`;
   }
@@ -175,16 +175,16 @@ export async function resendMagicLink(prevState: any, formData: FormData) {
   const supabase = await createClient();
 
   // Use magic link (passwordless) authentication
-  // For desktop app, use custom protocol (kortix://auth/callback) - same as mobile
-  // For web, use standard origin (https://kortix.com/auth/callback)
+  // For desktop app, use custom protocol (agentik://auth/callback) - same as mobile
+  // For web, use standard origin (https://agentik.com/auth/callback)
   let emailRedirectTo: string;
-  if (isDesktopApp && origin.startsWith('kortix://')) {
+  if (isDesktopApp && origin.startsWith('agentik://')) {
     // Match mobile implementation - simple protocol URL with optional terms_accepted
     const params = new URLSearchParams();
     if (acceptedTerms) {
       params.set('terms_accepted', 'true');
     }
-    emailRedirectTo = `kortix://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
+    emailRedirectTo = `agentik://auth/callback${params.toString() ? `?${params.toString()}` : ''}`;
   } else {
     emailRedirectTo = `${origin}/auth/callback?returnUrl=${encodeURIComponent(returnUrl || '/dashboard')}${acceptedTerms ? '&terms_accepted=true' : ''}`;
   }

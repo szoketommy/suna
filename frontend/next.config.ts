@@ -14,7 +14,7 @@ const getBackendUrl = (): string => {
   
   // Production environment
   if (vercelEnv === 'production') {
-    return 'https://api.kortix.com/v1';
+    return 'https://api.agentik.com/v1';
   }
   
   // Preview deployments (non-main branches)
@@ -25,11 +25,11 @@ const getBackendUrl = (): string => {
       .replace(/[^a-z0-9-]/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
-    return `https://${sanitizedBranch}.api-staging.suna.so/v1`;
+    return `https://${sanitizedBranch}.api-staging.agentik.so/v1`;
   }
   
   // Main branch / staging (default)
-  return 'https://staging-api.suna.so/v1';
+  return 'https://staging-api.agentik.so/v1';
 };
 
 const nextConfig = (): NextConfig => ({

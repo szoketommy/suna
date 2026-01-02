@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, memo, useMemo } from 'react';
 import * as ResizablePrimitive from 'react-resizable-panels';
 import { SiteHeader } from '@/components/thread/thread-site-header';
-import { KortixComputer, ToolCallInput } from '@/components/thread/kortix-computer';
+import { agentiKComputer, ToolCallInput } from '@/components/thread/agentik-computer';
 import { Project } from '@/lib/api/threads';
 import { ApiMessageType } from '@/components/thread/types';
 import { useIsMobile } from '@/hooks/utils';
@@ -11,7 +11,7 @@ import {
   ResizablePanel,
   ResizableHandle,
 } from '@/components/ui/resizable';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 
 interface ThreadLayoutProps {
   children: React.ReactNode;
@@ -80,8 +80,8 @@ export const ThreadLayout = memo(function ThreadLayout({
 }: ThreadLayoutProps) {
   const isActuallyMobile = useIsMobile();
 
-  // Kortix Computer Store - for handling file open requests
-  const { shouldOpenPanel, clearShouldOpenPanel, openFileInComputer, openFileBrowser } = useKortixComputerStore();
+  // agentiK Computer Store - for handling file open requests
+  const { shouldOpenPanel, clearShouldOpenPanel, openFileInComputer, openFileBrowser } = useagentiKComputerStore();
 
   // Track when panel should be visible
   const shouldShowPanel = isSidePanelOpen && initialLoadCompleted;
@@ -110,7 +110,7 @@ export const ThreadLayout = memo(function ThreadLayout({
   const mainPanelRef = useRef<ResizablePrimitive.ImperativePanelHandle>(null);
   const sidePanelRef = useRef<ResizablePrimitive.ImperativePanelHandle>(null);
 
-  // Handle file click - now opens in Kortix Computer instead of modal
+  // Handle file click - now opens in agentiK Computer instead of modal
   const handleFileClick = React.useCallback((filePath?: string, filePathList?: string[]) => {
     if (filePath) {
       // If a specific file is provided, open it in the file viewer
@@ -140,7 +140,7 @@ export const ThreadLayout = memo(function ThreadLayout({
   }, [shouldOpenPanel, isSidePanelOpen, onToggleSidePanel, clearShouldOpenPanel]);
 
   // Get selected file path from store
-  const selectedFilePath = useKortixComputerStore((state) => state.selectedFilePath);
+  const selectedFilePath = useagentiKComputerStore((state) => state.selectedFilePath);
   
   const SUITE_MODE_FILE_EXTENSIONS = [
     'kanvax', 
@@ -189,7 +189,7 @@ export const ThreadLayout = memo(function ThreadLayout({
           </div>
           {isSidePanelOpen && initialLoadCompleted && (
             <div className="absolute inset-0 bg-background z-40">
-              <KortixComputer
+              <agentiKComputer
                 isOpen={true}
                 onClose={onSidePanelClose}
                 toolCalls={toolCalls}
@@ -247,7 +247,7 @@ export const ThreadLayout = memo(function ThreadLayout({
           )}
         </div>
 
-        <KortixComputer
+        <agentiKComputer
           isOpen={isSidePanelOpen && initialLoadCompleted}
           onClose={onSidePanelClose}
           toolCalls={toolCalls}
@@ -331,7 +331,7 @@ export const ThreadLayout = memo(function ThreadLayout({
             !shouldShowPanel ? "hidden" : ""
           )}
         >
-          <KortixComputer
+          <agentiKComputer
             isOpen={isSidePanelOpen && initialLoadCompleted}
             onClose={onSidePanelClose}
             toolCalls={toolCalls}

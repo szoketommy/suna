@@ -9,14 +9,14 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { useCreateNewAgent } from '@/hooks/agents/use-agents';
-import { useKortixTeamTemplates } from '@/hooks/secure-mcp/use-secure-mcp';
+import { useagentiKTeamTemplates } from '@/hooks/secure-mcp/use-secure-mcp';
 import { AgentCountLimitError } from '@/lib/api/errors';
 import { toast } from 'sonner';
 import type { BaseAgentData } from '@/components/ui/unified-agent-card';
 import type { MarketplaceTemplate } from './installation/types';
 import { MarketplaceAgentPreviewDialog } from './marketplace-agent-preview-dialog';
 import { useRouter } from 'next/navigation';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 
@@ -57,7 +57,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
 
   const createNewAgentMutation = useCreateNewAgent();
   // Only fetch templates when modal is open to avoid unnecessary API calls
-  const { data: templates } = useKortixTeamTemplates({ enabled: open });
+  const { data: templates } = useagentiKTeamTemplates({ enabled: open });
 
   const handleExploreTemplates = () => {
     onOpenChange(false);
@@ -74,7 +74,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
       system_prompt: template.system_prompt,
       tags: template.tags || [],
       download_count: template.download_count || 0,
-      is_kortix_team: template.is_kortix_team || false,
+      is_agentik_team: template.is_agentik_team || false,
       creator_name: template.creator_name,
       created_at: template.created_at,
       icon_name: template.icon_name,
@@ -104,7 +104,7 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
     icon_background: template.icon_background,
     creator_id: template.creator_id,
     creator_name: template.creator_name,
-    is_kortix_team: template.is_kortix_team || false,
+    is_agentik_team: template.is_agentik_team || false,
     download_count: template.download_count || 0,
     marketplace_published_at: template.marketplace_published_at,
     mcp_requirements: template.mcp_requirements || [],
@@ -197,8 +197,8 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
               {/* Logo & Header */}
               <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
                 <div className="mb-3 sm:mb-4 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-muted/50">
-                  <KortixLogo size={28} variant="symbol" className="sm:hidden" />
-                  <KortixLogo size={36} variant="symbol" className="hidden sm:block" />
+                  <agentiKLogo size={28} variant="symbol" className="sm:hidden" />
+                  <agentiKLogo size={36} variant="symbol" className="hidden sm:block" />
                 </div>
                 <DialogTitle className="text-xl sm:text-2xl font-semibold text-foreground">
                   Create a new Worker
@@ -275,8 +275,8 @@ export function AgentCreationModal({ open, onOpenChange, onSuccess }: AgentCreat
               {/* Logo & Header */}
               <div className="flex flex-col items-center text-center mb-5 sm:mb-6">
                 <div className="mb-3 sm:mb-4 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-muted/50">
-                  <KortixLogo size={28} variant="symbol" className="sm:hidden" />
-                  <KortixLogo size={36} variant="symbol" className="hidden sm:block" />
+                  <agentiKLogo size={28} variant="symbol" className="sm:hidden" />
+                  <agentiKLogo size={36} variant="symbol" className="hidden sm:block" />
                 </div>
                 <DialogTitle className="text-xl sm:text-2xl font-semibold text-foreground">
                   Describe your Worker

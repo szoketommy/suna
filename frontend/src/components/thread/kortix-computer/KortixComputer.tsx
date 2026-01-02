@@ -16,10 +16,10 @@ import { useTranslations } from 'next-intl';
 import { Drawer, DrawerContent } from '@/components/ui/drawer';
 import { useDocumentModalStore } from '@/stores/use-document-modal-store';
 import { 
-  useKortixComputerStore,
-  useKortixComputerPendingToolNavIndex,
-  useKortixComputerClearPendingToolNav,
-} from '@/stores/kortix-computer-store';
+  useagentiKComputerStore,
+  useagentiKComputerPendingToolNavIndex,
+  useagentiKComputerClearPendingToolNav,
+} from '@/stores/agentik-computer-store';
 import { FileBrowserView } from './FileBrowserView';
 import { FileViewerView } from './FileViewerView';
 import { ToolCallData, ToolResultData } from '../tool-views/types';
@@ -42,7 +42,7 @@ export interface ToolCallInput {
   messages?: ApiMessageType[];
 }
 
-interface KortixComputerProps {
+interface agentiKComputerProps {
   isOpen: boolean;
   onClose: () => void;
   toolCalls: ToolCallInput[];
@@ -80,9 +80,9 @@ interface ToolCallSnapshot {
 
 type NavigationMode = 'live' | 'manual';
 
-const FLOATING_LAYOUT_ID = 'kortix-computer-float';
+const FLOATING_LAYOUT_ID = 'agentik-computer-float';
 
-export const KortixComputer = memo(function KortixComputer({
+export const agentiKComputer = memo(function agentiKComputer({
   isOpen,
   onClose,
   toolCalls,
@@ -101,7 +101,7 @@ export const KortixComputer = memo(function KortixComputer({
   sandboxId,
   projectId,
   sidePanelRef,
-}: KortixComputerProps) {
+}: agentiKComputerProps) {
   const t = useTranslations('thread');
   const [dots, setDots] = useState('');
   const [internalIndex, setInternalIndex] = useState(0);
@@ -125,10 +125,10 @@ export const KortixComputer = memo(function KortixComputer({
     currentPath,
     navigateToPath,
     openFile,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
   
-  const pendingToolNavIndex = useKortixComputerPendingToolNavIndex();
-  const clearPendingToolNav = useKortixComputerClearPendingToolNav();
+  const pendingToolNavIndex = useagentiKComputerPendingToolNavIndex();
+  const clearPendingToolNav = useagentiKComputerClearPendingToolNav();
 
   const effectiveSandboxIdForQuery = sandboxId || project?.sandbox?.id || '';
   const { data: enhancedBrowserFiles = [] } = useDirectoryQuery(
@@ -736,7 +736,7 @@ export const KortixComputer = memo(function KortixComputer({
   if (isMobile) {
     const handleDrawerKeyDown = (e: React.KeyboardEvent) => {
       // Vaul drawers are dismissible by Escape by default.
-      // Prevent Escape / Esc from closing the Kortix Computer.
+      // Prevent Escape / Esc from closing the agentiK Computer.
       if (e.key === 'Escape' || e.key === 'Esc') {
         e.preventDefault();
         e.stopPropagation();
@@ -747,7 +747,7 @@ export const KortixComputer = memo(function KortixComputer({
       <Drawer
         open={isOpen}
         onOpenChange={(open) => !open && handleClose()}
-        // Never allow Esc/Escape to dismiss the Kortix Computer.
+        // Never allow Esc/Escape to dismiss the agentiK Computer.
         // (Users commonly hit Escape in editors / sandbox UIs.)
         dismissible={false}
       >
@@ -962,7 +962,7 @@ export const KortixComputer = memo(function KortixComputer({
   return (
     <motion.div
       key="sidepanel-resizable"
-      layoutId="kortix-computer-window"
+      layoutId="agentik-computer-window"
       initial={{ opacity: 1 }}
       animate={{ opacity: 1 }}
       transition={{

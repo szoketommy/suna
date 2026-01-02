@@ -14,7 +14,7 @@ import {
   safeJsonParse,
   HIDE_STREAMING_XML_TAGS,
 } from "@/components/thread/utils";
-import { KortixLogo } from "@/components/sidebar/kortix-logo";
+import { agentiKLogo } from "@/components/sidebar/agentik-logo";
 import { AgentLoader } from "./loader";
 import { ShowToolStream } from "./ShowToolStream";
 import { ComposioUrlDetector } from "./composio-url-detector";
@@ -667,8 +667,8 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
     sandboxId,
     project,
     isPreviewMode = false,
-    agentName = "Kortix",
-    agentAvatar = <KortixLogo size={14} />,
+    agentName = "agentiK",
+    agentAvatar = <agentiKLogo size={14} />,
     emptyStateComponent,
     threadMetadata,
     scrollContainerRef,
@@ -717,19 +717,19 @@ export const ThreadContent: React.FC<ThreadContentProps> = memo(
       if (recentAssistantWithAgent?.agents?.name) {
         const rawName = recentAssistantWithAgent.agents.name;
         const name =
-          typeof rawName === "string" ? rawName : String(rawName || "Kortix");
+          typeof rawName === "string" ? rawName : String(rawName || "agentiK");
         return {
           name,
           avatar: (
             <div className="h-5 w-5 flex items-center justify-center rounded text-xs">
-              <KortixLogo size={14} />
+              <agentiKLogo size={14} />
             </div>
           ),
         };
       }
-      const fallbackName = typeof agentName === "string" ? agentName : "Kortix";
+      const fallbackName = typeof agentName === "string" ? agentName : "agentiK";
       return {
-        name: fallbackName || "Kortix",
+        name: fallbackName || "agentiK",
         avatar: agentAvatar,
       };
     }, [threadMetadata, displayMessages, agentName, agentAvatar]);

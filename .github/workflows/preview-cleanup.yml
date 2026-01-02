@@ -36,8 +36,8 @@ jobs:
             mkdir -p /home/ubuntu/scripts
             
             # Pull latest scripts from repo if they exist
-            if [ -d /home/ubuntu/suna/infra/staging/scripts ]; then
-              cp -r /home/ubuntu/suna/infra/staging/scripts/* /home/ubuntu/scripts/ || true
+            if [ -d /home/ubuntu/agentik/infra/staging/scripts ]; then
+              cp -r /home/ubuntu/agentik/infra/staging/scripts/* /home/ubuntu/scripts/ || true
               chmod +x /home/ubuntu/scripts/*.sh || true
             fi
             

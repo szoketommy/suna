@@ -2,7 +2,7 @@
 
 import { memo } from 'react';
 import { Cpu, HardDrive, MemoryStick, MapPin, Loader2 } from 'lucide-react';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { cn } from '@/lib/utils';
 import { SandboxDetails } from '@/hooks/files/use-sandbox-details';
 
@@ -68,10 +68,10 @@ export const SystemInfoContent = memo(function SystemInfoContent({
     <div className="h-full overflow-auto p-6">
       <div className="flex flex-col items-center justify-center gap-4 mb-8">
         <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-background to-muted flex items-center justify-center border shadow-lg">
-          <KortixLogo size={40} />
+          <agentiKLogo size={40} />
         </div>
         <div className="flex flex-col items-center justify-center">
-          <h3 className="text-foreground font-semibold text-xl text-center">Kortix Computer</h3>
+          <h3 className="text-foreground font-semibold text-xl text-center">agentiK Computer</h3>
           <div className="flex items-center justify-center gap-2 mt-1">
             <StateIndicator state={sandboxDetails.state} />
             <span className={cn("text-sm font-medium capitalize", getStateColor(sandboxDetails.state))}>

@@ -94,7 +94,7 @@ function LegalContent() {
                       </h3>
                       <div className="text-muted-foreground mb-6 space-y-2">
                         <p>
-                          <strong>Kortix AI Corp</strong>
+                          <strong>agentiK AI Corp</strong>
                         </p>
                         <p>701 Tillery Street</p>
                         <p>Unit 12-2521</p>
@@ -109,10 +109,10 @@ function LegalContent() {
                         <p>
                           Email:{' '}
                           <a
-                            href="mailto:info@kortix.com"
+                            href="mailto:info@agentik.com"
                             className="text-primary hover:underline"
                           >
-                            info@kortix.com
+                            info@agentik.com
                           </a>
                         </p>
                       </div>
@@ -121,7 +121,7 @@ function LegalContent() {
                         Responsible for Content
                       </h3>
                       <p className="text-muted-foreground mb-6">
-                        Kortix AI Corp is responsible for the content of this
+                        agentiK AI Corp is responsible for the content of this
                         website in accordance with applicable laws.
                       </p>
 
@@ -157,10 +157,10 @@ function LegalContent() {
                       <p className="text-muted-foreground text-balance mb-6">
                         PLEASE READ THESE TERMS OF USE ("AGREEMENT" OR "TERMS OF
                         USE" or "TERMS OF SERVICE" or "TERMS AND CONDITIONS")
-                        CAREFULLY BEFORE USING THE SERVICES OFFERED BY Kortix AI
+                        CAREFULLY BEFORE USING THE SERVICES OFFERED BY agentiK AI
                         Corp (701 Tillery Street Unit 12-2521 Austin, Texas 78702,
                         United States). THIS AGREEMENT SETS FORTH THE LEGALLY
-                        BINDING TERMS AND CONDITIONS FOR YOUR USE OF THE Kortix
+                        BINDING TERMS AND CONDITIONS FOR YOUR USE OF THE agentiK
                         WEBSITE AND ALL RELATED SERVICES.
                       </p>
 
@@ -169,16 +169,16 @@ function LegalContent() {
                       </h3>
                       <ul className="text-muted-foreground space-y-1 mb-6">
                         <li>
-                          "Company" refers to Kortix AI Corp (701 Tillery Street
+                          "Company" refers to agentiK AI Corp (701 Tillery Street
                           Unit 12-2521 Austin, Texas 78702, United States).
                         </li>
                         <li>
-                          "Site" refers to the Kortix website, including any related
+                          "Site" refers to the agentiK website, including any related
                           features, content, or applications offered from time to
                           time by the Company.
                         </li>
                         <li>
-                          "Service" refers to the Kortix website and all related
+                          "Service" refers to the agentiK website and all related
                           services provided by the Company, including the
                           AI-powered agent that helps you accomplish real-world
                           tasks.
@@ -216,7 +216,7 @@ function LegalContent() {
                         </li>
                         <li>
                           "Notice Address" refers to the contact address for the
-                          Company, specifically legal@kortix.com
+                          Company, specifically legal@agentik.com
                         </li>
                         <li>
                           "Privacy Policy" refers to the document outlining how
@@ -356,12 +356,12 @@ function LegalContent() {
                       <p className="text-muted-foreground text-balance mb-6">
                         For the full license terms, please refer to the LICENSE file in our GitHub repository:{' '}
                         <a
-                          href="https://github.com/kortix-ai/suna/blob/main/LICENSE"
+                          href="https://github.com/agentik-ai/agentik/blob/main/LICENSE"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-primary hover:underline"
                         >
-                          github.com/kortix-ai/suna/blob/main/LICENSE
+                          github.com/agentik-ai/agentik/blob/main/LICENSE
                         </a>
                       </p>
 
@@ -387,7 +387,7 @@ function LegalContent() {
                         held by others. We respect rights holders internationally,
                         and we ask our users to do the same. If you believe your
                         copyright or trademark is being infringed by the Service,
-                        please write to info@kortix.com and we will process and
+                        please write to info@agentik.com and we will process and
                         investigate your request and take appropriate actions
                         under the Digital Millennium Copyright Act and other
                         applicable intellectual property laws with respect to any
@@ -403,7 +403,7 @@ function LegalContent() {
                         subscription, payable in U.S. dollars, that will
                         automatically renew. You can stop using the Service and
                         cancel your subscription at any time through the website
-                        or by emailing us at info@kortix.com. If you cancel
+                        or by emailing us at info@agentik.com. If you cancel
                         your subscription, you may not receive a refund or credit
                         for any amounts that have already been billed or paid. The
                         Company reserves the right to change its prices at any
@@ -549,7 +549,7 @@ function LegalContent() {
                         Trademarks and Patents
                       </h3>
                       <p className="text-muted-foreground text-balance mb-6">
-                        All Kortix logos, marks, and designations are trademarks or
+                        All agentiK logos, marks, and designations are trademarks or
                         registered trademarks of the Company. All other trademarks
                         mentioned on this website are the property of their
                         respective owners. The trademarks and logos displayed on
@@ -639,14 +639,14 @@ function LegalContent() {
                       <p className="text-muted-foreground text-balance mb-6">
                         ALL USE OF THE SERVICE AND ANY CONTENT IS UNDERTAKEN
                         ENTIRELY AT YOUR OWN RISK. THE SERVICE (INCLUDING, WITHOUT
-                        LIMITATION, THE Kortix WEB APP AND ANY CONTENT) IS PROVIDED
+                        LIMITATION, THE agentiK WEB APP AND ANY CONTENT) IS PROVIDED
                         "AS IS" AND "AS AVAILABLE" AND IS WITHOUT WARRANTY OF ANY
                         KIND, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
                         THE IMPLIED WARRANTIES OF TITLE, NON-INFRINGEMENT,
                         MERCHANTABILITY, AND FITNESS FOR A PARTICULAR PURPOSE, AND
                         ANY WARRANTIES IMPLIED BY ANY COURSE OF PERFORMANCE OR
                         USAGE OF TRADE, ALL OF WHICH ARE EXPRESSLY DISCLAIMED.
-                        Kortix DOES NOT GUARANTEE THE ACCURACY, COMPLETENESS, OR
+                        agentiK DOES NOT GUARANTEE THE ACCURACY, COMPLETENESS, OR
                         RELIABILITY OF THE AI-GENERATED CONTENT, AND USERS ASSUME
                         FULL RESPONSIBILITY FOR ANY APPLICATIONS CREATED USING THE
                         SERVICE. SOME STATES DO NOT ALLOW LIMITATIONS ON HOW LONG
@@ -681,10 +681,10 @@ function LegalContent() {
                         For questions regarding the Service, you can get in touch
                         by emailing us at{' '}
                         <a
-                          href="mailto:info@kortix.com"
+                          href="mailto:info@agentik.com"
                           className="text-primary hover:underline"
                         >
-                          info@kortix.com
+                          info@agentik.com
                         </a>
                         .
                       </p>
@@ -712,7 +712,7 @@ function LegalContent() {
                       </p>
 
                       <p className="text-muted-foreground text-balance mb-6">
-                        References to our "Services" at Kortix in this statement
+                        References to our "Services" at agentiK in this statement
                         include our website, apps, and other products and
                         services. This statement applies to our Services that
                         display or reference this Privacy Statement. Third-party
@@ -721,7 +721,7 @@ function LegalContent() {
                       </p>
 
                       <p className="text-muted-foreground text-balance mb-6">
-                        Kortix does not collect biometric or identifying
+                        agentiK does not collect biometric or identifying
                         information. All data is processed securely and any data
                         is deleted upon account removal.
                       </p>
@@ -905,10 +905,10 @@ function LegalContent() {
                       <p className="text-muted-foreground text-balance">
                         You can get in touch by emailing us at{' '}
                         <a
-                          href="mailto:info@kortix.com"
+                          href="mailto:info@agentik.com"
                           className="text-primary hover:underline"
                         >
-                          info@kortix.com
+                          info@agentik.com
                         </a>
                         .
                       </p>

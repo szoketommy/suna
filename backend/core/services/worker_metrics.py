@@ -215,7 +215,7 @@ async def publish_to_cloudwatch(metrics: dict) -> bool:
         ]
         
         cloudwatch.put_metric_data(
-            Namespace='Kortix',
+            Namespace='agentiK',
             MetricData=metric_data
         )
         logger.debug(f"Published worker metrics to CloudWatch: {metrics.get('active_workers')} workers, {metrics.get('busy_threads')}/{metrics.get('total_threads')} threads busy ({metrics.get('utilization_percent')}%)")

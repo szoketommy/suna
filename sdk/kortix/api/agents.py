@@ -261,7 +261,7 @@ def from_dict(cls, data: Dict[str, Any]):
 
 
 class AgentsClient:
-    """SDK client for Kortix Agents API with httpx client supporting custom headers"""
+    """SDK client for agentiK Agents API with httpx client supporting custom headers"""
 
     def __init__(
         self,
@@ -274,7 +274,7 @@ class AgentsClient:
         Initialize the Agents API client
 
         Args:
-            base_url: Base URL of the API (e.g., "https://api.kortix.com/v1")
+            base_url: Base URL of the API (e.g., "https://api.agentik.com/v1")
             auth_token: JWT token for authentication
             custom_headers: Additional headers to include in all requests
             timeout: Request timeout in seconds

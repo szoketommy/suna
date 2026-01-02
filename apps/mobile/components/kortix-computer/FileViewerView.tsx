@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react'
 import { View, ScrollView, TextInput, Pressable, Alert, Share, Modal, FlatList, Platform } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Home,
@@ -42,9 +42,9 @@ import {
   type FileVersion,
   type CommitInfo,
 } from '@/lib/files/hooks';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 import { API_URL, getAuthToken } from '@/api/config';
-import { KortixComputerHeader } from './KortixComputerHeader';
+import { agentiKComputerHeader } from './agentiKComputerHeader';
 import { VersionBanner } from './VersionBanner';
 
 interface FileViewerViewProps {
@@ -84,7 +84,7 @@ export function FileViewerView({
     selectedVersionDate,
     setSelectedVersion,
     clearSelectedVersion,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
 
   const [blobUrl, setBlobUrl] = useState<string | undefined>();
   const [versionBlobUrl, setVersionBlobUrl] = useState<string | undefined>();
@@ -494,7 +494,7 @@ export function FileViewerView({
   return (
     <View className="flex-1">
       {/* Header */}
-      <KortixComputerHeader
+      <agentiKComputerHeader
         icon={Home}
         onIconClick={goBackToBrowser}
         iconTitle="Back to files"
@@ -633,7 +633,7 @@ export function FileViewerView({
       <View className="flex-1">
         {isLoading ? (
           <View className="flex-1 items-center justify-center">
-            <KortixLoader size="large" />
+            <agentiKLoader size="large" />
             <Text className="text-sm text-primary opacity-50 mt-4">
               {isLoadingVersionContent ? 'Loading version...' : `Loading ${fileName}...`}
             </Text>
@@ -750,7 +750,7 @@ export function FileViewerView({
 
           {isLoadingVersions ? (
             <View className="flex-1 items-center justify-center">
-              <KortixLoader size="large" />
+              <agentiKLoader size="large" />
               <Text className="text-sm text-primary opacity-50 mt-4">Loading history...</Text>
             </View>
           ) : versions.length === 0 ? (
@@ -794,7 +794,7 @@ export function FileViewerView({
 
             {isLoadingRevertInfo ? (
               <View className="py-8 items-center">
-                <KortixLoader size="small" />
+                <agentiKLoader size="small" />
               </View>
             ) : revertCommitInfo ? (
               <View className="mb-4">

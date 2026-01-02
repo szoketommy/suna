@@ -111,7 +111,7 @@ export function MemorySettings() {
                 {t('enableMemory') || 'Enable Memory'}
               </Label>
               <p className="text-xs text-muted-foreground">
-                {t('enableMemoryDescription') || 'Allow Kortix to remember information from your conversations'}
+                {t('enableMemoryDescription') || 'Allow agentiK to remember information from your conversations'}
               </p>
             </div>
             <Switch

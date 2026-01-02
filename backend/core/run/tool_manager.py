@@ -63,8 +63,8 @@ class ToolManager:
             
             if self.account_id:
                 t = time.time()
-                self._register_suna_specific_tools(disabled_tools)
-                timings['suna_tools'] = (time.time() - t) * 1000
+                self._register_agentik_specific_tools(disabled_tools)
+                timings['agentik_tools'] = (time.time() - t) * 1000
             
             total = (time.time() - start) * 1000
             timing_str = " | ".join([f"{k}: {v:.1f}ms" for k, v in timings.items()])
@@ -225,7 +225,7 @@ class ToolManager:
                 except Exception as e:
                     logger.warning(f"❌ Failed to register {tool_name}: {e}")
     
-    def _register_suna_specific_tools(self, disabled_tools: List[str]):
+    def _register_agentik_specific_tools(self, disabled_tools: List[str]):
         if 'agent_creation_tool' not in disabled_tools and self.account_id:
             from core.tools.tool_registry import get_tool_info, get_tool_class
             from core.services.supabase import DBConnection

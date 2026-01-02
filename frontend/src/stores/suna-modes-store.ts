@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface SunaModesState {
+interface agentiKModesState {
   selectedMode: string | null;
   selectedCharts: string[];
   selectedOutputFormat: string | null;
@@ -13,7 +13,7 @@ interface SunaModesState {
   setSelectedTemplate: (template: string | null) => void;
 }
 
-export const useSunaModesStore = create<SunaModesState>()(
+export const useagentiKModesStore = create<agentiKModesState>()(
   persist(
     (set, get) => ({
       selectedMode: null,
@@ -46,7 +46,7 @@ export const useSunaModesStore = create<SunaModesState>()(
       },
     }),
     {
-      name: 'suna-modes-storage',
+      name: 'agentik-modes-storage',
       partialize: (state) => ({
         selectedMode: state.selectedMode,
         selectedCharts: state.selectedCharts,
@@ -58,8 +58,8 @@ export const useSunaModesStore = create<SunaModesState>()(
 );
 
 // Convenience hook for backward compatibility
-export function useSunaModePersistence() {
-  const store = useSunaModesStore();
+export function useagentiKModePersistence() {
+  const store = useagentiKModesStore();
   
   return {
     selectedMode: store.selectedMode,

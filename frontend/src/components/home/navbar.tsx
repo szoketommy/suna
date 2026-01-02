@@ -11,7 +11,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useAuth } from '@/components/AuthProvider';
 import { useGitHubStars } from '@/hooks/utils';
 import { useRouter, usePathname } from 'next/navigation';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 
@@ -60,7 +60,7 @@ export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const { user } = useAuth();
-  const { formattedStars, loading: starsLoading } = useGitHubStars('kortix-ai', 'suna');
+  const { formattedStars, loading: starsLoading } = useGitHubStars('agentik-ai', 'agentik');
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations('common');
@@ -125,7 +125,7 @@ export function Navbar() {
             {/* Left Section - Logo */}
             <div className="flex items-center justify-start flex-shrink-0 w-auto md:w-[200px]">
               <Link href="/" className="flex items-center gap-3">
-                <KortixLogo size={18} variant='logomark' />
+                <agentiKLogo size={18} variant='logomark' />
               </Link>
             </div>
             {/* 
@@ -137,7 +137,7 @@ export function Navbar() {
             <div className="flex items-center justify-end flex-1 ml-auto gap-2 sm:gap-3 flex-wrap">
               <LocaleSwitcher variant="compact" />
               <Link
-                href="https://github.com/kortix-ai/suna"
+                href="https://github.com/agentik-ai/agentik"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-1.5 h-7 px-2.5 text-xs font-medium rounded-full bg-transparent text-muted-foreground/60 hover:text-muted-foreground hover:bg-accent/30 transition-all duration-200"
@@ -201,7 +201,7 @@ export function Navbar() {
               <div className="flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <Link href="/" className="flex items-center gap-3" onClick={() => setIsDrawerOpen(false)}>
-                    <KortixLogo size={20} variant='logomark' />
+                    <agentiKLogo size={20} variant='logomark' />
                   </Link>
                   <button
                     onClick={toggleDrawer}
@@ -289,7 +289,7 @@ export function Navbar() {
                   <div className="flex items-center gap-2">
                     {/* GitHub Stars Link */}
                     <Link
-                      href="https://github.com/kortix-ai/suna"
+                      href="https://github.com/agentik-ai/agentik"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 h-9 px-3 text-xs font-medium rounded-lg bg-accent/50 hover:bg-accent text-muted-foreground hover:text-foreground transition-all duration-200 flex-1 min-w-0"

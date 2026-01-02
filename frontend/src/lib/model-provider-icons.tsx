@@ -11,22 +11,22 @@ export type ModelProvider =
   | 'moonshotai'
   | 'bedrock'
   | 'openrouter'
-  | 'kortix';
+  | 'agentik';
 
 /**
- * Check if a model ID corresponds to a Kortix mode (Basic, Advanced, or Test)
+ * Check if a model ID corresponds to a agentiK mode (Basic, Advanced, or Test)
  */
-export function isKortixMode(modelId: string): boolean {
-  // New Kortix registry IDs
-  if (modelId === 'kortix/basic' || modelId === 'kortix/power' || modelId === 'kortix/test' ||
-      modelId === 'kortix-basic' || modelId === 'kortix-power' || modelId === 'kortix-test') {
+export function isagentiKMode(modelId: string): boolean {
+  // New agentiK registry IDs
+  if (modelId === 'agentik/basic' || modelId === 'agentik/power' || modelId === 'agentik/test' ||
+      modelId === 'agentik-basic' || modelId === 'agentik-power' || modelId === 'agentik-test') {
     return true;
   }
-  // Legacy: Kortix Basic (Haiku 4.5)
+  // Legacy: agentiK Basic (Haiku 4.5)
   if (modelId.includes('claude-haiku-4-5') || modelId.includes('heol2zyy5v48')) {
     return true;
   }
-  // Legacy: Kortix Advanced Mode (Sonnet 4.5)
+  // Legacy: agentiK Advanced Mode (Sonnet 4.5)
   if (modelId.includes('claude-sonnet-4-5') || modelId.includes('few7z4l830xh')) {
     return true;
   }
@@ -37,9 +37,9 @@ export function isKortixMode(modelId: string): boolean {
  * Get the provider from a model ID
  */
 export function getModelProvider(modelId: string): ModelProvider {
-  // Check for Kortix modes first
-  if (isKortixMode(modelId)) {
-    return 'kortix';
+  // Check for agentiK modes first
+  if (isagentiKMode(modelId)) {
+    return 'agentik';
   }
   if (modelId.includes('anthropic') || modelId.includes('claude')) {
     return 'anthropic';
@@ -94,7 +94,7 @@ export function ModelProviderIcon({
   const provider = getModelProvider(modelId);
 
   const iconMap: Record<ModelProvider, string> = {
-    kortix: '/kortix-symbol.svg', // Kortix modes use the Kortix symbol
+    agentik: '/agentik-symbol.svg', // agentiK modes use the agentiK symbol
     anthropic: '/images/models/Anthropic.svg',
     openai: '/images/models/OAI.svg',
     google: '/images/models/Gemini.svg',
@@ -104,8 +104,8 @@ export function ModelProviderIcon({
     openrouter: '/images/models/OAI.svg', // Default to OpenAI icon for OpenRouter
   };
 
-  // Special handling for Kortix symbol - needs different invert behavior
-  const isKortix = provider === 'kortix';
+  // Special handling for agentiK symbol - needs different invert behavior
+  const isagentiK = provider === 'agentik';
 
   const iconSrc = iconMap[provider];
 
@@ -143,9 +143,9 @@ export function ModelProviderIcon({
         height={size * 0.6}
         className={cn(
           "object-contain",
-          // Kortix symbol: invert in dark mode (black symbol → white)
+          // agentiK symbol: invert in dark mode (black symbol → white)
           // Other icons: invert in dark mode (black icons → white)
-          isKortix ? "dark:invert" : "dark:brightness-0 dark:invert"
+          isagentiK ? "dark:invert" : "dark:brightness-0 dark:invert"
         )}
         style={{ width: size * 0.6, height: size * 0.6 }}
       />
@@ -160,7 +160,7 @@ export function getModelProviderName(modelId: string): string {
   const provider = getModelProvider(modelId);
 
   const nameMap: Record<ModelProvider, string> = {
-    kortix: 'Kortix',
+    agentik: 'agentiK',
     anthropic: 'Anthropic',
     openai: 'OpenAI',
     google: 'Google',

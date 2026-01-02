@@ -40,7 +40,7 @@ import { normalizeFilenameToNFC } from '@/lib/utils/unicode';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { agentKeys } from '@/hooks/agents/keys';
 import { getAgents } from '@/hooks/agents/utils';
-import { useSunaModePersistence } from '@/stores/suna-modes-store';
+import { useagentiKModePersistence } from '@/stores/agentik-modes-store';
 import { useAgentSelection } from '@/stores/agent-selection-store';
 import { useTranslations } from 'next-intl';
 import { usePricingModalStore } from '@/stores/pricing-modal-store';
@@ -53,8 +53,8 @@ const GoogleSignIn = lazy(() => import('@/components/GoogleSignIn'));
 const AgentRunLimitBanner = lazy(() => 
     import('@/components/thread/agent-run-limit-banner').then(mod => ({ default: mod.AgentRunLimitBanner }))
 );
-const SunaModesPanel = lazy(() => 
-    import('@/components/dashboard/suna-modes-panel').then(mod => ({ default: mod.SunaModesPanel }))
+const agentiKModesPanel = lazy(() => 
+    import('@/components/dashboard/agentik-modes-panel').then(mod => ({ default: mod.agentiKModesPanel }))
 );
 
 const BlurredDialogOverlay = () => (
@@ -64,7 +64,7 @@ const BlurredDialogOverlay = () => (
 const PENDING_PROMPT_KEY = 'pendingAgentPrompt';
 
 export function HeroSection() {
-    const t = useTranslations('suna');
+    const t = useTranslations('agentik');
     const tBilling = useTranslations('billing');
     const tAuth = useTranslations('auth');
     const { hero } = siteConfig;
@@ -89,7 +89,7 @@ export function HeroSection() {
         setSelectedCharts,
         setSelectedOutputFormat,
         setSelectedTemplate,
-    } = useSunaModePersistence();
+    } = useagentiKModePersistence();
     const router = useRouter();
     const { user, isLoading } = useAuth();
     const pricingModalStore = usePricingModalStore();
@@ -137,7 +137,7 @@ export function HeroSection() {
     });
 
     const agents = agentsResponse?.agents || [];
-    const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default === true);
+    const agentikAgent = agents.find(agent => agent.metadata?.is_agentik_default === true);
 
     useEffect(() => {
         if (agents.length > 0) {
@@ -149,10 +149,10 @@ export function HeroSection() {
         ? agents.find(agent => agent.agent_id === selectedAgentId)
         : null;
     
-    // Show Kortix modes: while loading, when not logged in, or when Kortix agent is selected
-    const isSunaAgent = !user || isLoading || isLoadingAgents
+    // Show agentiK modes: while loading, when not logged in, or when agentiK agent is selected
+    const isagentiKAgent = !user || isLoading || isLoadingAgents
         ? true
-        : (selectedAgent?.metadata?.is_suna_default || (!selectedAgentId && sunaAgent !== undefined) || false);
+        : (selectedAgent?.metadata?.is_agentik_default || (!selectedAgentId && agentikAgent !== undefined) || false);
 
     const [authDialogOpen, setAuthDialogOpen] = useState(false);
 
@@ -442,10 +442,10 @@ export function HeroSection() {
                             </div>
                         </div>
                     </div>
-                    {isSunaAgent && (
+                    {isagentiKAgent && (
                         <div className="w-full max-w-3xl mx-auto mt-4 px-4 sm:px-0 animate-in fade-in-0 slide-in-from-bottom-4 duration-500 delay-200 fill-mode-both">
                             <Suspense fallback={<div className="h-24 animate-pulse bg-muted/10 rounded-lg" />}>
-                                <SunaModesPanel
+                                <agentiKModesPanel
                                     selectedMode={selectedMode}
                                     onModeSelect={setSelectedMode}
                                     onSelectPrompt={setInputValue}
@@ -519,11 +519,11 @@ export function HeroSection() {
 
                     <div className="mt-8 text-center text-[13px] text-muted-foreground leading-relaxed">
                         {tAuth('byContinuingYouAgreeSimple')}{' '}
-                        <a href="https://www.kortix.com/legal?tab=terms" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground underline underline-offset-2 transition-colors">
+                        <a href="https://www.agentik.com/legal?tab=terms" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground underline underline-offset-2 transition-colors">
                             {tAuth('termsOfService')}
                         </a>{' '}
                         and{' '}
-                        <a href="https://www.kortix.com/legal?tab=privacy" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground underline underline-offset-2 transition-colors">
+                        <a href="https://www.agentik.com/legal?tab=privacy" target="_blank" rel="noopener noreferrer" className="text-foreground/70 hover:text-foreground underline underline-offset-2 transition-colors">
                             {tAuth('privacyPolicy')}
                         </a>
                     </div>

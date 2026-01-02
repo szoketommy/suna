@@ -76,7 +76,7 @@ async def publish_to_cloudwatch(queue_depth: int) -> bool:
     
     try:
         cloudwatch.put_metric_data(
-            Namespace='Kortix',
+            Namespace='agentiK',
             MetricData=[{
                 'MetricName': 'DramatiqQueueDepth',
                 'Value': queue_depth,

@@ -5,7 +5,7 @@ import { Icon } from '@/components/ui/icon';
 import { X } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Haptics from 'expo-haptics';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 import { ViewToggle } from './ViewToggle';
 import { NavigationControls } from './NavigationControls';
 import { ToolsView } from './ToolsView';
@@ -16,7 +16,7 @@ import { extractToolCallAndResult } from '@/lib/utils/tool-data-extractor';
 import type { UnifiedMessage } from '@/api/types';
 import type { ToolMessagePair } from '@/components/chat';
 
-interface KortixComputerProps {
+interface agentiKComputerProps {
   toolMessages: ToolMessagePair[];
   currentIndex: number;
   onNavigate: (newIndex: number) => void;
@@ -40,7 +40,7 @@ interface KortixComputerProps {
   sandboxId?: string;
 }
 
-export function KortixComputer({
+export function agentiKComputer({
   toolMessages,
   currentIndex,
   onNavigate,
@@ -53,7 +53,7 @@ export function KortixComputer({
   onPromptFill,
   streamingText,
   sandboxId,
-}: KortixComputerProps) {
+}: agentiKComputerProps) {
   const insets = useSafeAreaInsets();
 
   const {
@@ -65,7 +65,7 @@ export function KortixComputer({
     closePanel,
     setActiveView,
     clearPendingToolNav,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
 
   const [internalIndex, setInternalIndex] = useState(currentIndex);
   const [navigationMode, setNavigationMode] = useState<'live' | 'manual'>('live');
@@ -169,7 +169,7 @@ export function KortixComputer({
         >
           <View className="flex-row items-center gap-3">
             <Text className="text-lg font-roobert-semibold text-primary">
-              Kortix Computer
+              agentiK Computer
             </Text>
             {isStreaming && activeView === 'tools' && (
               <View className="px-2.5 py-0.5 rounded-full bg-card border border-border flex-row items-center gap-1.5">

@@ -22,7 +22,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ImageLoader } from './shared/ImageLoader';
 import { JsonViewer } from './shared/JsonViewer';
-import { KortixComputerHeader } from '../kortix-computer/KortixComputerHeader';
+import { agentiKComputerHeader } from '../agentik-computer/agentiKComputerHeader';
 
 interface BrowserHeaderProps {
   isConnected: boolean;
@@ -32,7 +32,7 @@ interface BrowserHeaderProps {
 
 export const BrowserHeader: React.FC<BrowserHeaderProps> = ({ isConnected, onRefresh, viewToggle }) => {
   return (
-    <KortixComputerHeader
+    <agentiKComputerHeader
       icon={Globe}
       title="Browser"
       actions={

@@ -31,7 +31,7 @@ import { getPdfUrl } from '@/components/thread/tool-views/utils/presentation-uti
 import { useTranslations } from 'next-intl';
 import { PromptExamples } from '@/components/shared/prompt-examples';
 
-interface SunaModesPanelProps {
+interface agentiKModesPanelProps {
   selectedMode: string | null;
   onModeSelect: (mode: string | null) => void;
   onSelectPrompt: (prompt: string) => void;
@@ -1136,7 +1136,7 @@ const ChartIcon = ({ type, className }: { type: string; className?: string }) =>
   }
 };
 
-export function SunaModesPanel({ 
+export function agentiKModesPanel({ 
   selectedMode, 
   onModeSelect, 
   onSelectPrompt, 
@@ -1149,8 +1149,8 @@ export function SunaModesPanel({
   onTemplateChange,
   isFreeTier = false,
   onUpgradeClick,
-}: SunaModesPanelProps) {
-  const t = useTranslations('suna');
+}: agentiKModesPanelProps) {
+  const t = useTranslations('agentik');
   const currentMode = selectedMode ? modes.find((m) => m.id === selectedMode) : null;
   const promptCount = isMobile ? 2 : 4;
   
@@ -1168,7 +1168,7 @@ export function SunaModesPanel({
         const key = `prompts.${modeId}.${index}` as any;
         const prompt = t(key);
         // Check if translation exists (next-intl returns the key if missing)
-        if (!prompt || prompt === `suna.${key}` || prompt.startsWith('suna.prompts.') || prompt.includes(modeId)) {
+        if (!prompt || prompt === `agentik.${key}` || prompt.startsWith('agentik.prompts.') || prompt.includes(modeId)) {
           // If translation is missing, use the hardcoded prompt instead
           prompts.push(mode.samplePrompts[index]);
         } else {

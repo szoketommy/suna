@@ -805,7 +805,7 @@ export function PlanPage({
               <View className="mt-4 flex-row justify-center gap-4">
                 <Pressable
                   onPress={() =>
-                    WebBrowser.openBrowserAsync('https://www.kortix.com/legal?tab=privacy')
+                    WebBrowser.openBrowserAsync('https://www.agentik.com/legal?tab=privacy')
                   }>
                   <Text className="font-roobert-medium text-xs text-muted-foreground underline">
                     {t('billing.privacyPolicy', 'Privacy Policy')}
@@ -813,7 +813,7 @@ export function PlanPage({
                 </Pressable>
                 <Pressable
                   onPress={() =>
-                    WebBrowser.openBrowserAsync('https://www.kortix.com/legal?tab=terms')
+                    WebBrowser.openBrowserAsync('https://www.agentik.com/legal?tab=terms')
                   }>
                   <Text className="font-roobert-medium text-xs text-muted-foreground underline">
                     {t('billing.termsOfService', 'Terms of Service')}

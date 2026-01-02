@@ -6,7 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import { Mail } from 'lucide-react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Svg, { Path } from 'react-native-svg';
@@ -23,10 +23,10 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import { Dimensions, Animated as RNAnimated } from 'react-native';
-import { KortixLogo } from '@/components/ui/KortixLogo';
+import { agentiKLogo } from '@/components/ui/agentiKLogo';
 import { EmailAuthDrawer, type EmailAuthDrawerRef } from '@/components/auth';
-import KortixSymbolBlack from '@/assets/brand/kortix-symbol-scale-effect-black.svg';
-import KortixSymbolWhite from '@/assets/brand/kortix-symbol-scale-effect-white.svg';
+import agentiKSymbolBlack from '@/assets/brand/agentik-symbol-scale-effect-black.svg';
+import agentiKSymbolWhite from '@/assets/brand/agentik-symbol-scale-effect-white.svg';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const AnimatedText = Animated.createAnimatedComponent(Text);
@@ -156,7 +156,7 @@ function AuthBackgroundLogo() {
   }, []);
 
   const leftOffset = (SCREEN_WIDTH - 393) / 2;
-  const SymbolComponent = colorScheme === 'dark' ? KortixSymbolWhite : KortixSymbolBlack;
+  const SymbolComponent = colorScheme === 'dark' ? agentiKSymbolWhite : agentiKSymbolBlack;
 
   return (
     <RNAnimated.View
@@ -244,7 +244,7 @@ export default function AuthScreen() {
       <>
         <Stack.Screen options={{ headerShown: false, gestureEnabled: false }} />
         <View className="flex-1 bg-background items-center justify-center">
-          <KortixLoader size="xlarge" />
+          <agentiKLoader size="xlarge" />
         </View>
       </>
     );
@@ -298,7 +298,7 @@ function WelcomeContent({ onOAuth, onEmail }: WelcomeContentProps) {
     >
         {/* Logo */}
         <View style={{ marginBottom: SPACING.logoToTitle }}>
-          <KortixLogo variant="logomark" size={100} color={isDark ? 'dark' : 'light'} />
+          <agentiKLogo variant="logomark" size={100} color={isDark ? 'dark' : 'light'} />
         </View>
         
         {/* Title */}

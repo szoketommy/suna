@@ -17,7 +17,7 @@ interface AgentContextType {
   loadAgents: () => Promise<void>;
   getDefaultAgent: () => Agent | null;
   getCurrentAgent: () => Agent | null;
-  isSunaAgent: () => boolean;
+  isagentiKAgent: () => boolean;
   clearSelection: () => Promise<void>;
 }
 
@@ -117,8 +117,8 @@ export function AgentProvider({ children }: { children: React.ReactNode }) {
         }
 
         // No valid stored agent - select default
-        const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default);
-        const defaultAgent = sunaAgent || agents[0];
+        const agentikAgent = agents.find(agent => agent.metadata?.is_agentik_default);
+        const defaultAgent = agentikAgent || agents[0];
 
         if (defaultAgent) {
           console.log('✅ Auto-selected default agent:', defaultAgent.name);
@@ -162,8 +162,8 @@ export function AgentProvider({ children }: { children: React.ReactNode }) {
   }, [refetch]);
 
   const getDefaultAgent = React.useCallback((): Agent | null => {
-    const sunaAgent = agents.find(agent => agent.metadata?.is_suna_default);
-    return sunaAgent || agents[0] || null;
+    const agentikAgent = agents.find(agent => agent.metadata?.is_agentik_default);
+    return agentikAgent || agents[0] || null;
   }, [agents]);
 
   const getCurrentAgent = React.useCallback((): Agent | null => {
@@ -171,9 +171,9 @@ export function AgentProvider({ children }: { children: React.ReactNode }) {
     return agents.find(agent => agent.agent_id === selectedAgentId) || null;
   }, [selectedAgentId, agents]);
 
-  const isSunaAgent = React.useCallback((): boolean => {
+  const isagentiKAgent = React.useCallback((): boolean => {
     const currentAgent = getCurrentAgent();
-    return currentAgent?.metadata?.is_suna_default || false;
+    return currentAgent?.metadata?.is_agentik_default || false;
   }, [getCurrentAgent]);
 
   const clearSelection = React.useCallback(async () => {
@@ -203,7 +203,7 @@ export function AgentProvider({ children }: { children: React.ReactNode }) {
     loadAgents,
     getDefaultAgent,
     getCurrentAgent,
-    isSunaAgent,
+    isagentiKAgent,
     clearSelection,
   }), [
     selectedAgentId,
@@ -217,7 +217,7 @@ export function AgentProvider({ children }: { children: React.ReactNode }) {
     loadAgents,
     getDefaultAgent,
     getCurrentAgent,
-    isSunaAgent,
+    isagentiKAgent,
     clearSelection,
   ]);
 

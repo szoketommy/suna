@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
 
 // localStorage keys
-const SELECTED_MODE_KEY = 'selectedSunaMode';
+const SELECTED_MODE_KEY = 'selectedagentiKMode';
 const SELECTED_CHARTS_KEY = 'selectedCharts';
 const SELECTED_OUTPUT_FORMAT_KEY = 'selectedOutputFormat';
 const SELECTED_TEMPLATE_KEY = 'selectedTemplate';
 
-interface SunaModesState {
+interface agentiKModesState {
   selectedMode: string | null;
   selectedCharts: string[];
   selectedOutputFormat: string | null;
   selectedTemplate: string | null;
 }
 
-interface SunaModesActions {
+interface agentiKModesActions {
   setSelectedMode: (mode: string | null) => void;
   setSelectedCharts: (charts: string[]) => void;
   setSelectedOutputFormat: (format: string | null) => void;
   setSelectedTemplate: (template: string | null) => void;
 }
 
-export function useSunaModePersistence(): SunaModesState & SunaModesActions {
+export function useagentiKModePersistence(): agentiKModesState & agentiKModesActions {
   // Initialize mode from localStorage
   const [selectedMode, setSelectedModeState] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {

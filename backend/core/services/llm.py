@@ -275,8 +275,8 @@ async def make_llm_api_call(
         # OpenRouter requires the "app" parameter in extra_body
         if "extra_body" not in params:
             params["extra_body"] = {}
-        params["extra_body"]["app"] = "Kortix.com"
-        logger.debug(f"Added OpenRouter app parameter: Kortix.com for model {actual_litellm_model_id}")
+        params["extra_body"]["app"] = "agentiK.com"
+        logger.debug(f"Added OpenRouter app parameter: agentiK.com for model {actual_litellm_model_id}")
     
     # Add tools if provided
     if tools:

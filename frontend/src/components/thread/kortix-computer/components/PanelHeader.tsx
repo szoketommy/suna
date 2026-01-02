@@ -4,8 +4,8 @@ import { memo, useState, useEffect } from 'react';
 import { CircleDashed, Minimize2, Maximize2, Wifi, Battery, BatteryLow, BatteryMedium, BatteryFull, BatteryCharging } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DrawerTitle } from '@/components/ui/drawer';
-import { ViewType } from '@/stores/kortix-computer-store';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { ViewType } from '@/stores/agentik-computer-store';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { cn } from '@/lib/utils';
 import { ViewToggle } from './ViewToggle';
 import { ToolbarButtons } from './ToolbarButtons';
@@ -128,14 +128,14 @@ export const PanelHeader = memo(function PanelHeader({
   onToggleSuiteMode,
   hideViewToggle = false,
 }: PanelHeaderProps) {
-  const title = "Kortix Computer";
+  const title = "agentiK Computer";
 
   if (variant === 'drawer') {
     return (
       <div className="h-14 flex-shrink-0 px-4 flex items-center justify-between border-b border-border">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 flex items-center justify-center">
-            <KortixLogo size={18}/>
+            <agentiKLogo size={18}/>
           </div>
           <DrawerTitle className="text-sm font-semibold text-foreground">
             {title}
@@ -175,7 +175,7 @@ export const PanelHeader = memo(function PanelHeader({
         className="flex items-center justify-center gap-1.5 cursor-pointer select-none hover:opacity-80 transition-opacity"
       >
         <div className="w-5 h-5 flex items-center justify-center">
-          <KortixLogo size={14}/>
+          <agentiKLogo size={14}/>
         </div>
         <h2 className="text-sm font-semibold text-foreground">
           {title}

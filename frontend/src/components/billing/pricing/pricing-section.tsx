@@ -29,7 +29,7 @@ import { ScheduledDowngradeCard } from '@/components/billing/scheduled-downgrade
 import posthog from 'posthog-js';
 import { AnimatedBg } from '@/components/ui/animated-bg';
 import { TierBadge } from '@/components/billing/tier-badge';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { CreditPurchaseModal } from '@/components/billing/credit-purchase';
 import { BorderBeam } from '@/components/ui/border-beam';
 import { useTranslations } from 'next-intl';
@@ -760,7 +760,7 @@ function PricingTier({
                       <div className="flex-1">
                         <div className="flex items-center gap-1 sm:gap-1.5">
                           <span className="text-xs sm:text-sm font-medium">{match[1]} custom</span>
-                          <KortixLogo size={12} variant="symbol" className="hidden sm:block" />
+                          <agentiKLogo size={12} variant="symbol" className="hidden sm:block" />
                           <span className="text-xs sm:text-sm font-medium">AI Workers</span>
                         </div>
                         {description && (
@@ -772,7 +772,7 @@ function PricingTier({
                 }
               }
 
-              // Special handling for Kortix Advanced mode - show with Basic crossed out
+              // Special handling for agentiK Advanced mode - show with Basic crossed out
               if (feature.includes('Advanced mode') || feature.includes('ADVANCED Mode')) {
                 const description = feature.split(' - ')[1];
                 return (
@@ -785,8 +785,8 @@ function PricingTier({
                         <span className="text-[10px] sm:text-xs text-muted-foreground/60 line-through">Basic</span>
                         <span className="text-muted-foreground/40 text-xs">→</span>
                         <span className="inline-flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 bg-primary/10 dark:bg-primary/15 rounded-md">
-                          <KortixLogo size={10} variant="symbol" className="sm:hidden" />
-                          <KortixLogo size={12} variant="symbol" className="hidden sm:block" />
+                          <agentiKLogo size={10} variant="symbol" className="sm:hidden" />
+                          <agentiKLogo size={12} variant="symbol" className="hidden sm:block" />
                           <span className="text-[10px] sm:text-xs font-semibold text-primary">Advanced</span>
                         </span>
                       </div>
@@ -840,7 +840,7 @@ function PricingTier({
               } else if (feature.includes('100+ integrations') || feature === '100+ integrations' || feature.includes('100+ App Integrations')) {
                 translatedFeature = t('features.integrations');
               } else if (feature.includes('Advanced mode') || feature.includes('ADVANCED Mode')) {
-                translatedFeature = 'Kortix Advanced mode';
+                translatedFeature = 'agentiK Advanced mode';
               } else if (feature.includes('Priority Support') || feature === 'Priority Support') {
                 translatedFeature = t('features.prioritySupport');
               }

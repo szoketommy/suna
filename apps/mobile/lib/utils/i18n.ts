@@ -14,7 +14,7 @@ import pt from '@/locales/pt.json';
 import zh from '@/locales/zh.json';
 import ja from '@/locales/ja.json';
 
-const LANGUAGE_KEY = '@kortix_language';
+const LANGUAGE_KEY = '@agentik_language';
 
 // Language resources
 const resources = {

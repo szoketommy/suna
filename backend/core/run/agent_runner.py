@@ -301,16 +301,16 @@ class AgentRunner:
         tool_manager.register_all_tools(agent_id=agent_id, disabled_tools=disabled_tools, use_spark=use_spark)
         logger.info(f"⏱️ [TIMING] register_all_tools() with SPARK={use_spark}: {(time.time() - register_start) * 1000:.1f}ms")
         
-        is_suna_agent = (self.config.agent_config and self.config.agent_config.get('is_suna_default', False)) or (self.config.agent_config is None)
-        logger.debug(f"Agent config check: agent_config={self.config.agent_config is not None}, is_suna_default={is_suna_agent}")
+        is_agentik_agent = (self.config.agent_config and self.config.agent_config.get('is_agentik_default', False)) or (self.config.agent_config is None)
+        logger.debug(f"Agent config check: agent_config={self.config.agent_config is not None}, is_agentik_default={is_agentik_agent}")
         
-        if is_suna_agent:
-            suna_start = time.time()
-            logger.debug("Registering Suna-specific tools...")
-            self._register_suna_specific_tools(disabled_tools)
-            logger.debug(f"⏱️ [TIMING] Suna-specific tools: {(time.time() - suna_start) * 1000:.1f}ms")
+        if is_agentik_agent:
+            agentik_start = time.time()
+            logger.debug("Registering agentiK-specific tools...")
+            self._register_agentik_specific_tools(disabled_tools)
+            logger.debug(f"⏱️ [TIMING] agentiK-specific tools: {(time.time() - agentik_start) * 1000:.1f}ms")
         else:
-            logger.debug("Not a Suna agent, skipping Suna-specific tool registration")
+            logger.debug("Not a agentiK agent, skipping agentiK-specific tool registration")
         
         logger.info(f"⏱️ [TIMING] setup_tools() total: {(time.time() - start) * 1000:.1f}ms")
     
@@ -339,7 +339,7 @@ class AgentRunner:
         
         return get_enabled_methods_for_tool(tool_name, self.migrated_tools)
     
-    def _register_suna_specific_tools(self, disabled_tools: List[str]):
+    def _register_agentik_specific_tools(self, disabled_tools: List[str]):
         if 'agent_creation_tool' not in disabled_tools:
             from core.tools.agent_creation_tool import AgentCreationTool
             from core.services.supabase import DBConnection
@@ -366,7 +366,7 @@ class AgentRunner:
         if not isinstance(raw_tools, dict):
             return disabled_tools
         
-        if self.config.agent_config.get('is_suna_default', False) and not raw_tools:
+        if self.config.agent_config.get('is_agentik_default', False) and not raw_tools:
             return disabled_tools
         
         def is_tool_enabled(tool_name: str) -> bool:

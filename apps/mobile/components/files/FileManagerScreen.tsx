@@ -7,7 +7,7 @@ import React, { useState, useMemo } from 'react';
 import { View, ScrollView, Pressable, Alert, TextInput, RefreshControl } from 'react-native';
 import { Text } from '@/components/ui/text';
 import { Icon } from '@/components/ui/icon';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import {
   Upload,
   FolderPlus,
@@ -376,7 +376,7 @@ export function FileManagerScreen({ sandboxId, sandboxUrl, onClose, initialFileP
       <View className="flex-1">
         {isLoading ? (
           <View className="flex-1 items-center justify-center">
-            <KortixLoader size="large" />
+            <agentiKLoader size="large" />
             <Text
               className="text-sm mt-4 font-roobert"
               style={{ color: isDark ? 'rgba(248, 248, 248, 0.5)' : 'rgba(18, 18, 21, 0.5)' }}

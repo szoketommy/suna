@@ -33,11 +33,11 @@ import {
 } from '@/hooks/files';
 import { useDownloadRestriction } from '@/hooks/billing';
 import { cn } from '@/lib/utils';
-import { useKortixComputerStore } from '@/stores/kortix-computer-store';
+import { useagentiKComputerStore } from '@/stores/agentik-computer-store';
 import { PresentationViewer } from '../tool-views/presentation-tools/PresentationViewer';
 import { FullScreenPresentationViewer } from '../tool-views/presentation-tools/FullScreenPresentationViewer';
 import { usePresentationViewerStore } from '@/stores/presentation-viewer-store';
-import { KortixComputerHeader } from './KortixComputerHeader';
+import { agentiKComputerHeader } from './agentiKComputerHeader';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -147,7 +147,7 @@ export function FileViewerView({
 }: FileViewerViewProps) {
   const { session } = useAuth();
 
-  // Kortix Computer Store
+  // agentiK Computer Store
   const {
     filePathList,
     currentFileIndex,
@@ -162,7 +162,7 @@ export function FileViewerView({
     selectedVersionDate: globalSelectedVersionDate,
     setSelectedVersion: setGlobalSelectedVersion,
     clearSelectedVersion: clearGlobalSelectedVersion,
-  } = useKortixComputerStore();
+  } = useagentiKComputerStore();
 
   // React Query client for cache invalidation
   const queryClient = useQueryClient();
@@ -770,7 +770,7 @@ export function FileViewerView({
     return (
       <div className="h-full flex flex-col overflow-hidden bg-background">
         {/* Header */}
-        <KortixComputerHeader
+        <agentiKComputerHeader
           icon={Home}
           onIconClick={goBackToBrowser}
           iconTitle="Back to files"
@@ -865,7 +865,7 @@ export function FileViewerView({
   return (
     <div className="h-full flex flex-col overflow-hidden bg-background">
       {/* Header */}
-      <KortixComputerHeader
+      <agentiKComputerHeader
         icon={Home}
         onIconClick={goBackToBrowser}
         iconTitle="Back to files"

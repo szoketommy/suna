@@ -269,7 +269,7 @@ export function TaskCompletedFeedback({
                 htmlFor="help-improve"
                 className="text-sm text-foreground cursor-pointer"
               >
-                {t('thread.helpKortixImprove')}
+                {t('thread.helpagentiKImprove')}
               </label>
             </div>
           </div>

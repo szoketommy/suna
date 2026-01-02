@@ -120,7 +120,7 @@ export interface UnifiedMarkdownProps {
  * UNIFIED MARKDOWN RENDERER
  * 
  * Single source of truth for all markdown rendering across the application.
- * Optimized for Kortix brand with Vercel-level UX/UI polish.
+ * Optimized for agentiK brand with Vercel-level UX/UI polish.
  * 
  * Design principles:
  * - Clean, minimal aesthetic
@@ -147,7 +147,7 @@ export const UnifiedMarkdown = React.memo<UnifiedMarkdownProps>(({
   const processedContent = autoLinkUrls(safeContent);
 
   return (
-    <div className={cn('kortix-markdown', className)}>
+    <div className={cn('agentik-markdown', className)}>
       <Streamdown
         isAnimating={isStreaming}
         components={{

@@ -1,4 +1,4 @@
-# Kortix Frontend
+# agentiK Frontend
 
 ## Quick Setup
 

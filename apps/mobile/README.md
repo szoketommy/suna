@@ -1,1 +1,1 @@
-# Kortix Mobile App
+# agentiK Mobile App

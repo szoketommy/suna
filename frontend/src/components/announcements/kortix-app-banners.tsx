@@ -4,28 +4,28 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { X, Smartphone, Monitor } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import { isElectron } from '@/lib/utils/is-electron';
 import { featureFlags } from '@/lib/feature-flags';
 
-const MOBILE_STORAGE_KEY = 'kortix-mobile-banner-dismissed';
-const DESKTOP_STORAGE_KEY = 'kortix-desktop-banner-dismissed';
+const MOBILE_STORAGE_KEY = 'agentik-mobile-banner-dismissed';
+const DESKTOP_STORAGE_KEY = 'agentik-desktop-banner-dismissed';
 
 const STORE_LINKS = {
-  ios: 'https://apps.apple.com/ie/app/kortix/id6754448524',
-  android: 'https://play.google.com/store/apps/details?id=com.kortix.app',
+  ios: 'https://apps.apple.com/ie/app/agentik/id6754448524',
+  android: 'https://play.google.com/store/apps/details?id=com.agentik.app',
 };
 
 const DOWNLOAD_LINKS = {
-  windows: 'https://download.kortix.com/desktop/latest/windows/Kortix%20Setup%201.0.0.exe',
-  macArm: 'https://download.kortix.com/desktop/latest/macos/Kortix-1.0.0-arm64.dmg',
-  macIntel: 'https://download.kortix.com/desktop/latest/macos/Kortix-1.0.0-x64.dmg',
+  windows: 'https://download.agentik.com/desktop/latest/windows/agentiK%20Setup%201.0.0.exe',
+  macArm: 'https://download.agentik.com/desktop/latest/macos/agentiK-1.0.0-arm64.dmg',
+  macIntel: 'https://download.agentik.com/desktop/latest/macos/agentiK-1.0.0-x64.dmg',
 };
 
 type MobilePlatform = 'ios' | 'android';
 type DesktopPlatform = 'windows' | 'mac';
 
-type KortixAppBannersProps = {
+type agentiKAppBannersProps = {
   /**
    * When true, hides ONLY the mobile (App Store / Play Store) banner.
    * Desktop download banner can still show.
@@ -67,7 +67,7 @@ function detectDesktopPlatform(): DesktopPlatform {
 }
 
 
-export function KortixAppBanners(props: KortixAppBannersProps) {
+export function agentiKAppBanners(props: agentiKAppBannersProps) {
   const disableMobileAdvertising =
     props.disableMobileAdvertising ?? featureFlags.disableMobileAdvertising;
 
@@ -88,7 +88,7 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
     setDesktopPlatform(detectDesktopPlatform());
     
     if (process.env.NODE_ENV !== 'production') {
-      console.log('[KortixAppBanners] flags', { disableMobileAdvertising });
+      console.log('[agentiKAppBanners] flags', { disableMobileAdvertising });
     }
 
     const desktopDismissed = localStorage.getItem(DESKTOP_STORAGE_KEY);
@@ -182,14 +182,14 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-foreground dark:text-white text-sm font-semibold truncate">
-                    Get Kortix Apps
+                    Get agentiK Apps
                   </p>
                   <p className="text-muted-foreground dark:text-white/60 text-xs">
                     Mobile & Desktop
                   </p>
                 </div>
                 <div className="w-10 h-10 rounded-xl bg-foreground dark:bg-white flex items-center justify-center shadow-sm">
-                  <KortixLogo size={20} className="invert dark:invert-0" />
+                  <agentiKLogo size={20} className="invert dark:invert-0" />
                 </div>
               </div>
             </motion.div>
@@ -226,15 +226,15 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
                       >
                 <img 
                   src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(currentStoreUrl)}&format=svg&ecc=H`}
-                  alt={`QR Code to download Kortix on ${selectedMobilePlatform === 'ios' ? 'App Store' : 'Play Store'}`}
+                  alt={`QR Code to download agentiK on ${selectedMobilePlatform === 'ios' ? 'App Store' : 'Play Store'}`}
                   width={100}
                   height={100}
                   className="block"
                 />
-                {/* Kortix logo in center */}
+                {/* agentiK logo in center */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white p-1.5 rounded-lg">
-                    <KortixLogo size={24} />
+                    <agentiKLogo size={24} />
                   </div>
                 </div>
                       </button>
@@ -243,7 +243,7 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
                     {/* Content area */}
                     <div className="p-4 bg-muted/50 dark:bg-[#161618]">
                       <h3 className="text-foreground dark:text-white text-sm font-semibold mb-1">
-                        Kortix for Mobile is here
+                        agentiK for Mobile is here
                       </h3>
                       <p className="text-muted-foreground dark:text-white/60 text-xs leading-relaxed mb-3">
                         {selectedMobilePlatform === 'ios' 
@@ -323,7 +323,7 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
                         </div>
                         
                         <div className="w-8 h-8 bg-foreground dark:bg-[#1a1a1a] rounded-lg flex items-center justify-center">
-                          <KortixLogo size={16} className="invert dark:invert" />
+                          <agentiKLogo size={16} className="invert dark:invert" />
                         </div>
                         
                         <div className="flex gap-1 absolute bottom-1.5 right-2">
@@ -337,10 +337,10 @@ export function KortixAppBanners(props: KortixAppBannersProps) {
                     {/* Content area */}
                     <div className="p-4 bg-muted/50 dark:bg-[#161618]">
                       <h3 className="text-foreground dark:text-white text-sm font-semibold mb-1">
-                        Kortix for Desktop is here
+                        agentiK for Desktop is here
                       </h3>
                       <p className="text-muted-foreground dark:text-white/60 text-xs leading-relaxed mb-3">
-                        Hand it off to Kortix. From anywhere on your {desktopPlatform === 'mac' ? 'Mac' : 'Desktop'}. Download now.
+                        Hand it off to agentiK. From anywhere on your {desktopPlatform === 'mac' ? 'Mac' : 'Desktop'}. Download now.
                       </p>
 
                       {/* Desktop download badge */}

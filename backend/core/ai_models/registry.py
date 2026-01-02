@@ -24,8 +24,8 @@ HAIKU_BEDROCK_ARN = build_bedrock_profile_arn(HAIKU_4_5_PROFILE_ID)
 SONNET_BEDROCK_ARN = build_bedrock_profile_arn(SONNET_4_5_PROFILE_ID)
 
 # Default model IDs
-FREE_MODEL_ID = "kortix/basic"
-PREMIUM_MODEL_ID = "kortix/power"
+FREE_MODEL_ID = "agentik/basic"
+PREMIUM_MODEL_ID = "agentik/power"
 
 # Haiku 4.5 pricing (used for billing resolution)
 HAIKU_PRICING = ModelPricing(
@@ -49,20 +49,20 @@ class ModelRegistry:
         # Register Haiku Bedrock ARN pricing for billing resolution
         self._litellm_id_to_pricing[HAIKU_BEDROCK_ARN] = HAIKU_PRICING
         
-        # Kortix Basic - using MiniMax M2.1
+        # agentiK Basic - using MiniMax M2.1
         # basic_litellm_id = build_bedrock_profile_arn(HAIKU_4_5_PROFILE_ID) if SHOULD_USE_BEDROCK else "anthropic/claude-haiku-4-5-20251001"
         basic_litellm_id = "openrouter/minimax/minimax-m2.1"  # 204,800 context $0.30/M input tokens $1.20/M output tokens
         
         self.register(Model(
-            id="kortix/basic",
-            name="Kortix Basic",
+            id="agentik/basic",
+            name="agentiK Basic",
             litellm_model_id=basic_litellm_id,
             # Vision model: Use Haiku Bedrock when thread has images
             vision_litellm_model_id=HAIKU_BEDROCK_ARN,
             vision_context_window=200_000,
             vision_pricing=HAIKU_PRICING,
             provider=ModelProvider.OPENROUTER,
-            aliases=["kortix-basic", "Kortix Basic"],
+            aliases=["agentik-basic", "agentiK Basic"],
             context_window=200_000,
             capabilities=[
                 ModelCapability.CHAT,
@@ -94,20 +94,20 @@ class ModelRegistry:
             )
         ))
         
-        # Kortix Power - using MiniMax M2.1
+        # agentiK Power - using MiniMax M2.1
         # power_litellm_id = build_bedrock_profile_arn(HAIKU_4_5_PROFILE_ID) if SHOULD_USE_BEDROCK else "anthropic/claude-haiku-4-5-20251001"
         power_litellm_id = "openrouter/minimax/minimax-m2.1"  # 204,800 context $0.30/M input tokens $1.20/M output tokens
         
         self.register(Model(
-            id="kortix/power",
-            name="Kortix Advanced Mode",
+            id="agentik/power",
+            name="agentiK Advanced Mode",
             litellm_model_id=power_litellm_id,
             # Vision model: Use Haiku Bedrock when thread has images
             vision_litellm_model_id=HAIKU_BEDROCK_ARN,
             vision_context_window=200_000,
             vision_pricing=HAIKU_PRICING,
             provider=ModelProvider.OPENROUTER,
-            aliases=["kortix-power", "Kortix POWER Mode", "Kortix Power", "Kortix Advanced Mode"],
+            aliases=["agentik-power", "agentiK POWER Mode", "agentiK Power", "agentiK Advanced Mode"],
             context_window=200_000,
             capabilities=[
                 ModelCapability.CHAT,
@@ -140,7 +140,7 @@ class ModelRegistry:
             )
         ))
         
-        # Kortix Test - uses MiniMax M2 via Bedrock (only in LOCAL and STAGING, not PRODUCTION)
+        # agentiK Test - uses MiniMax M2 via Bedrock (only in LOCAL and STAGING, not PRODUCTION)
         if config.ENV_MODE != EnvMode.PRODUCTION:
             # test_litellm_id = build_bedrock_profile_arn(MINIMAX_M2_PROFILE_ID)
             # test_litellm_id ="openrouter/minimax/minimax-m2" #  205K context $0.255/M input tokens $1.02/M output tokens
@@ -155,11 +155,11 @@ class ModelRegistry:
             # test_litellm_id ="groq/moonshotai/kimi-k2-instruct" 
 
             self.register(Model(
-                id="kortix/test",
-                name="Kortix Test",
+                id="agentik/test",
+                name="agentiK Test",
                 litellm_model_id=test_litellm_id,
                 provider=ModelProvider.OPENROUTER,
-                aliases=["kortix-test", "Kortix Test"],
+                aliases=["agentik-test", "agentiK Test"],
                 context_window=200_000,
                 capabilities=[
                     ModelCapability.CHAT,
@@ -224,7 +224,7 @@ class ModelRegistry:
         """Resolve a model ID to its registry ID.
         
         Handles:
-        - Registry model IDs (kortix/basic) → returns as-is
+        - Registry model IDs (agentik/basic) → returns as-is
         - Model aliases → resolves to registry ID
         - LiteLLM model IDs (Bedrock ARNs) → reverse lookup to registry ID
         """
@@ -318,7 +318,7 @@ class ModelRegistry:
         """Get pricing for a LiteLLM model ID (handles both registry models and raw IDs).
         
         This is the primary method for billing to resolve pricing, as it handles:
-        1. Registry model IDs (kortix/basic)
+        1. Registry model IDs (agentik/basic)
         2. LiteLLM model IDs that map to registry models (with/without provider prefix)
         3. Fallback model IDs (like Haiku Bedrock ARN) that have explicit pricing
         """

@@ -19,12 +19,12 @@ interface TerminalProps {
   className?: string;
 }
 
-const TERMINAL_HISTORY_KEY = 'kortix-terminal-history';
+const TERMINAL_HISTORY_KEY = 'agentik-terminal-history';
 
 export const Terminal = memo(function Terminal({ sandboxId, className }: TerminalProps) {
   const queryClient = useQueryClient();
   const [lines, setLines] = useState<TerminalLine[]>([
-    { id: '0', type: 'output', content: 'Welcome to Kortix Terminal' },
+    { id: '0', type: 'output', content: 'Welcome to agentiK Terminal' },
     { id: '1', type: 'output', content: 'Type commands below and press Enter to execute.' },
     { id: '2', type: 'output', content: '' },
   ]);

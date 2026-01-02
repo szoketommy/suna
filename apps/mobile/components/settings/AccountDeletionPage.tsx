@@ -12,7 +12,7 @@ import { Icon } from '@/components/ui/icon';
 import { Trash2, Calendar, XCircle, AlertTriangle, CheckCircle } from 'lucide-react-native';
 import { SettingsHeader } from './SettingsHeader';
 import * as Haptics from 'expo-haptics';
-import { KortixLoader } from '@/components/ui';
+import { agentiKLoader } from '@/components/ui';
 import { 
   useAccountDeletionStatus, 
   useRequestAccountDeletion, 
@@ -328,7 +328,7 @@ function ActionButton({ onPress, disabled, isLoading, icon: IconComponent, label
     >
       {isLoading ? (
         <>
-          <KortixLoader 
+          <agentiKLoader 
             size="small" 
             forceTheme={colorScheme === 'dark' ? 'dark' : 'light'}
           />

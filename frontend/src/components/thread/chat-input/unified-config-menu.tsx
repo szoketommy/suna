@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Search, Check, ChevronDown, Plus, Loader2, Plug, Brain, LibraryBig, Zap, Lock, Sparkles, ChevronLeft } from 'lucide-react';
 import { useAgents } from '@/hooks/agents/use-agents';
-import { KortixLogo } from '@/components/sidebar/kortix-logo';
+import { agentiKLogo } from '@/components/sidebar/agentik-logo';
 import type { ModelOption } from '@/hooks/agents';
 import { SpotlightCard } from '@/components/ui/spotlight-card';
 
@@ -126,14 +126,14 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
 
     const agents: any[] = allAgents;
 
-    const sunaAgent = useMemo(() => {
-        return agents.find(a => a.metadata?.is_suna_default === true);
+    const agentikAgent = useMemo(() => {
+        return agents.find(a => a.metadata?.is_agentik_default === true);
     }, [agents]);
 
-    const placeholderSunaAgent = useMemo(() => ({
+    const placeholderagentiKAgent = useMemo(() => ({
         agent_id: undefined,
-        name: 'Kortix',
-        metadata: { is_suna_default: true }
+        name: 'agentiK',
+        metadata: { is_agentik_default: true }
     }), []);
 
     useEffect(() => {
@@ -186,9 +186,9 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
             const found = agents.find(a => a.agent_id === selectedAgentId);
             if (found) return found;
         }
-        if (sunaAgent) return sunaAgent;
+        if (agentikAgent) return agentikAgent;
         return agents[0];
-    }, [agents, selectedAgentId, sunaAgent]);
+    }, [agents, selectedAgentId, agentikAgent]);
 
     const handleQuickAction = useCallback((action: 'instructions' | 'knowledge' | 'triggers' | 'tools') => {
         if (!selectedAgentId && !displayAgent?.agent_id) {
@@ -199,11 +199,11 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
     }, [selectedAgentId, displayAgent?.agent_id]);
 
     const renderAgentIcon = useCallback((agent: any, size: number = 32) => {
-        if (!agent && (isLoading || sunaAgent)) {
-            return <AgentAvatar isSunaDefault={true} agentName="Kortix" size={size} className="flex-shrink-0 !border-0" />;
+        if (!agent && (isLoading || agentikAgent)) {
+            return <AgentAvatar isagentiKDefault={true} agentName="agentiK" size={size} className="flex-shrink-0 !border-0" />;
         }
         return <AgentAvatar agent={agent} agentId={agent?.agent_id} size={size} className="flex-shrink-0 !border-0" />;
-    }, [isLoading, sunaAgent]);
+    }, [isLoading, agentikAgent]);
 
     // Shared content components
     const AgentsList = useCallback(({ compact = false }: { compact?: boolean }) => (
@@ -349,17 +349,17 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
     ), [isFreeTier, openPricingModal]);
 
     const ModeToggle = useCallback(({ compact = false }: { compact?: boolean }) => {
-        const basicModel = modelOptions.find(m => m.id === 'kortix/basic' || m.label === 'Kortix Basic');
-        const powerModel = modelOptions.find(m => m.id === 'kortix/power' || m.label === 'Kortix Advanced Mode');
+        const basicModel = modelOptions.find(m => m.id === 'agentik/basic' || m.label === 'agentiK Basic');
+        const powerModel = modelOptions.find(m => m.id === 'agentik/power' || m.label === 'agentiK Advanced Mode');
         
         // Get additional models (not basic or power)
-        // Exclude kortix/test in PRODUCTION
+        // Exclude agentik/test in PRODUCTION
         const additionalModels = modelOptions.filter(m => 
-            m.id !== 'kortix/basic' && 
-            m.id !== 'kortix/power' && 
-            m.label !== 'Kortix Basic' && 
-            m.label !== 'Kortix Advanced Mode' &&
-            !(isProductionMode() && m.id === 'kortix/test')
+            m.id !== 'agentik/basic' && 
+            m.id !== 'agentik/power' && 
+            m.label !== 'agentiK Basic' && 
+            m.label !== 'agentiK Advanced Mode' &&
+            !(isProductionMode() && m.id === 'agentik/test')
         );
 
         const canAccessPower = powerModel ? canAccessModel(powerModel.id) : false;
@@ -407,7 +407,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                     setIsOpen(false);
                                     usePricingModalStore.getState().openPricingModal({
                                         isAlert: true,
-                                        alertTitle: 'Upgrade to access Kortix Advanced mode'
+                                        alertTitle: 'Upgrade to access agentiK Advanced mode'
                                     });
                                 }
                             }
@@ -422,7 +422,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                     : "text-muted-foreground/50"
                         )}
                     >
-                        <KortixLogo size={compact ? 10 : 12} variant="symbol" />
+                        <agentiKLogo size={compact ? 10 : 12} variant="symbol" />
                         <span className={cn(
                             "font-medium",
                             compact ? "text-xs" : "text-sm",
@@ -608,10 +608,10 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                 className="w-full flex items-center gap-3 p-3 rounded-2xl border border-border bg-card hover:bg-muted/50 active:bg-muted/70 transition-colors"
                             >
                                 <div className="flex items-center justify-center w-10 h-10 bg-card border-[1.5px] border-border flex-shrink-0" style={{ borderRadius: '10.4px' }}>
-                                    {renderAgentIcon(isLoading && !displayAgent ? placeholderSunaAgent : displayAgent, 40)}
+                                    {renderAgentIcon(isLoading && !displayAgent ? placeholderagentiKAgent : displayAgent, 40)}
                                 </div>
                                 <span className="flex-1 truncate text-base font-medium text-left min-w-0">
-                                    {displayAgent?.name || 'Kortix'}
+                                    {displayAgent?.name || 'agentiK'}
                                 </span>
                                 <ChevronDown className="h-5 w-5 text-muted-foreground rotate-[-90deg] flex-shrink-0" />
                             </button>
@@ -635,7 +635,7 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                 )}
             </div>
         );
-    }, [mobileSection, searchQuery, onAgentSelect, displayAgent, isLoading, placeholderSunaAgent, renderAgentIcon, selectedAgentId, AgentsList, CreateWorkerButton, ModeToggle, WorkerSettingsButtons]);
+    }, [mobileSection, searchQuery, onAgentSelect, displayAgent, isLoading, placeholderagentiKAgent, renderAgentIcon, selectedAgentId, AgentsList, CreateWorkerButton, ModeToggle, WorkerSettingsButtons]);
 
     // Trigger button
     const TriggerButton = (
@@ -648,15 +648,15 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
         >
             {onAgentSelect ? (
                 <div className="flex items-center gap-2 min-w-0 max-w-[180px]">
-                    {renderAgentIcon(isLoading && !displayAgent ? placeholderSunaAgent : displayAgent, 24)}
+                    {renderAgentIcon(isLoading && !displayAgent ? placeholderagentiKAgent : displayAgent, 24)}
                     <span className="truncate text-sm font-medium">
-                        {displayAgent?.name || 'Kortix'}
+                        {displayAgent?.name || 'agentiK'}
                     </span>
                     <ChevronDown size={12} className="opacity-60 flex-shrink-0" />
                 </div>
             ) : (
                 <div className="flex items-center gap-1.5">
-                    <KortixLogo size={20} />
+                    <agentiKLogo size={20} />
                     <ChevronDown size={12} className="opacity-60" />
                 </div>
             )}
@@ -720,9 +720,9 @@ const LoggedInMenu: React.FC<UnifiedConfigMenuProps> = memo(function LoggedInMen
                                             <DropdownMenuSub>
                                                 <DropdownMenuSubTrigger className="flex items-center gap-3 text-sm cursor-pointer px-1 py-1 hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent w-full">
                                                     <div className="flex items-center justify-center w-8 h-8 bg-card border-[1.5px] border-border flex-shrink-0" style={{ borderRadius: '10.4px' }}>
-                                                        {renderAgentIcon(isLoading && !displayAgent ? placeholderSunaAgent : displayAgent)}
+                                                        {renderAgentIcon(isLoading && !displayAgent ? placeholderagentiKAgent : displayAgent)}
                                                     </div>
-                                                    <span className="flex-1 truncate font-medium text-left">{displayAgent?.name || 'Kortix'}</span>
+                                                    <span className="flex-1 truncate font-medium text-left">{displayAgent?.name || 'agentiK'}</span>
                                                 </DropdownMenuSubTrigger>
                                                 <DropdownMenuPortal>
                                                     <DropdownMenuSubContent className="w-[320px] px-0 py-3 border-[1.5px] border-border rounded-2xl max-h-[500px] overflow-hidden" sideOffset={8}>
@@ -817,9 +817,9 @@ const GuestMenu: React.FC<UnifiedConfigMenuProps> = memo(function GuestMenu() {
                     >
                         <div className="flex items-center gap-2 min-w-0 max-w-[180px]">
                             <div className="flex-shrink-0">
-                                <KortixLogo size={20} />
+                                <agentiKLogo size={20} />
                             </div>
-                            <span className="truncate text-sm font-medium">Kortix</span>
+                            <span className="truncate text-sm font-medium">agentiK</span>
                             <ChevronDown size={12} className="opacity-60 flex-shrink-0" />
                         </div>
                     </Button>

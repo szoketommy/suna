@@ -96,8 +96,8 @@ class SandboxGitTool(SandboxToolsBase):
         if self._git_initialized:
             return
 
-        user_name = os.getenv("GIT_LOCAL_USER_NAME", "Suna Agent")
-        user_email = os.getenv("GIT_LOCAL_USER_EMAIL", "agent@suna.local")
+        user_name = os.getenv("GIT_LOCAL_USER_NAME", "agentiK Agent")
+        user_email = os.getenv("GIT_LOCAL_USER_EMAIL", "agent@agentik.local")
 
         workspace = self.workspace_path
         cmd = (

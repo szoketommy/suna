@@ -20,6 +20,8 @@ const languageNames: Record<Locale, string> = {
   pt: 'Português',
   fr: 'Français',
   es: 'Español',
+  hu: 'Magyar',
+  ro: 'Română',
 };
 
 const languageCodes: Record<Locale, string> = {
@@ -31,6 +33,8 @@ const languageCodes: Record<Locale, string> = {
   pt: 'PT',
   fr: 'FR',
   es: 'ES',
+  hu: 'HU',
+  ro: 'RO',
 };
 
 interface LocaleSwitcherProps {
